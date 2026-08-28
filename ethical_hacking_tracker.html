@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ethical Hacking Study Tracker</title>
+<style>
+  :root {
+    --bg: #0d1210;
+    --surface: #151b18;
+    --surface-2: #1c2420;
+    --border: #2a332e;
+    --text-primary: #d8e0da;
+    --text-secondary: #8a968e;
+    --text-muted: #5c6862;
+    --accent: #e8a33d;
+    --accent-dim: #6b5226;
+    --success: #4ade80;
+    --success-dim: #1f3d2a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 24px 16px 60px;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .prompt {
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin: 0 0 24px;
+  }
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .stat-card {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 6px;
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0;
+    color: var(--text-primary);
+  }
+  .progress-track {
+    height: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 16px 0 28px;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.25s ease;
+  }
+  .month-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .month-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .month-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .month-count {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .task-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    cursor: pointer;
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  .task-row input {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+  }
+  .task-row.done span {
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+  .footer-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 16px;
+  }
+  .reset-btn:hover {
+    border-color: var(--accent-dim);
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<p class="prompt">$ ./study_tracker --init</p>
+<h1>Ethical hacking study tracker</h1>
+<p class="subtitle">4-month roadmap from fundamentals to first solved box</p>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <p class="stat-label">Scan progress</p>
+    <p class="stat-value" id="pct-out">0%</p>
+  </div>
+  <div class="stat-card">
+    <p class="stat-label">Tasks done</p>
+    <p class="stat-value" id="count-out">0/16</p>
+  </div>
+</div>
+
+<div class="progress-track">
+  <div class="progress-fill" id="bar"></div>
+</div>
+
+<div id="months"></div>
+
+<button class="reset-btn" id="reset-btn">reset all progress</button>
+
+<p class="footer-note">Progress is saved in this browser (localStorage). It stays put if you reopen this file on the same device and browser, but won't sync across devices.</p>
+
+<script>
+const data = [
+  { title: "month_01 // foundations", tasks: [
+    "Networking basics: OSI, TCP/IP, ports",
+    "Linux fundamentals: shell, permissions",
+    "Scripting: bash + python basics",
+    "Write a simple port scanner script"
+  ]},
+  { title: "month_02 // methodology", tasks: [
+    "CIA triad, encryption, auth vs authz",
+    "5-phase hacking methodology",
+    "Master nmap scanning techniques",
+    "Start TryHackMe complete beginner path"
+  ]},
+  { title: "month_03 // web + tools", tasks: [
+    "Wireshark: packet capture and analysis",
+    "Burp Suite + OWASP top 10 basics",
+    "PortSwigger labs: SQLi and XSS",
+    "Metasploit: exploit and payload structure"
+  ]},
+  { title: "month_04 // practice", tasks: [
+    "HackTheBox starting point machines",
+    "Password attacks: John and Hashcat",
+    "Pick a specialization to go deeper",
+    "Write up your first solved box"
+  ]}
+];
+
+const STORAGE_KEY = "eh_tracker_state_v1";
+let state = {};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) state = JSON.parse(saved);
+  } catch (e) {
+    state = {};
+  }
+  data.forEach((m, mi) => m.tasks.forEach((t, ti) => {
+    const key = mi + "-" + ti;
+    if (!(key in state)) state[key] = false;
+  }));
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {}
+}
+
+const totalTasks = data.reduce((sum, m) => sum + m.tasks.length, 0);
+
+function render() {
+  const container = document.getElementById("months");
+  container.innerHTML = "";
+  data.forEach((m, mi) => {
+    const doneInMonth = m.tasks.filter((t, ti) => state[mi + "-" + ti]).length;
+    const card = document.createElement("div");
+    card.className = "month-card";
+
+    const header = document.createElement("div");
+    header.className = "month-header";
+    header.innerHTML = '<span class="month-title">' + m.title + '</span><span class="month-count">' + doneInMonth + '/' + m.tasks.length + '</span>';
+    card.appendChild(header);
+
+    m.tasks.forEach((t, ti) => {
+      const key = mi + "-" + ti;
+      const row = document.createElement("label");
+      row.className = "task-row" + (state[key] ? " done" : "");
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.checked = state[key];
+      cb.addEventListener("change", () => {
+        state[key] = cb.checked;
+        saveState();
+        render();
+        updateTotals();
+      });
+      row.appendChild(cb);
+      const span = document.createElement("span");
+      span.textContent = t;
+      row.appendChild(span);
+      card.appendChild(row);
+    });
+
+    container.appendChild(card);
+  });
+}
+
+function updateTotals() {
+  const done = Object.values(state).filter(Boolean).length;
+  const pct = Math.round((done / totalTasks) * 100);
+  document.getElementById("pct-out").textContent = pct + "%";
+  document.getElementById("count-out").textContent = done + "/" + totalTasks;
+  document.getElementById("bar").style.width = pct + "%";
+}
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+  if (confirm("Reset all progress?")) {
+    data.forEach((m, mi) => m.tasks.forEach((t, ti) => state[mi + "-" + ti] = false));
+    saveState();
+    render();
+    updateTotals();
+  }
+});
+
+loadState();
+render();
+updateTotals();
+</script>
+
+</body>
+</html>
