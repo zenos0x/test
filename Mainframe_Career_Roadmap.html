@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mainframe career roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF0F4; --sheet:#FFFFFF; --ink:#14213D; --ink2:#4A5775; --line:#D5DBE5; --soft:#F5F7FA;
+  --blue:#2F6FDE; --teal:#12A4A4; --green:#2E9E5B; --amber:#E2A400; --red:#D64545;
+  --console:#0E1A33; --c-blue:#7DB1FF; --c-turq:#5CE0D0; --c-yellow:#F8D966; --c-green:#7AE08F; --c-dim:#8795B5; --c-white:#E8EEF9;
+  --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --cond:'IBM Plex Sans Condensed','Arial Narrow','Roboto Condensed',var(--sans);
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,'Courier New',monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+h1,h2,h3{font-family:var(--cond);font-weight:600;margin:0;letter-spacing:-.005em;color:var(--ink)}
+h1{font-size:clamp(34px,5.4vw,52px);line-height:1.05}
+h2{font-size:22px;line-height:1.2}
+h3{font-size:18px}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* header */
+.top{background:var(--sheet);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0 10px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px}
+.logo svg{flex:none}
+.logo b{font-family:var(--cond);font-weight:600;font-size:20px}
+.logo span{display:block;font-size:12.5px;color:var(--ink2);margin-top:-2px}
+.tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tbtn{background:none;border:1px solid var(--line);border-radius:6px;padding:6px 12px;font-size:13px;color:var(--ink2);transition:background .15s,border-color .15s,color .15s}
+.tbtn:hover{background:var(--soft);border-color:#B8C2D2;color:var(--ink)}
+.tbtn.warn{border-color:var(--red);color:var(--red);background:#FDF0F0}
+nav.tabs{position:sticky;top:0;z-index:20;background:var(--sheet);border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex;align-items:center;gap:6px;justify-content:space-between}
+.tablist{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tablist::-webkit-scrollbar{display:none}
+.tab{background:none;border:0;border-bottom:3px solid transparent;padding:12px 14px 9px;font-size:14.5px;font-weight:500;color:var(--ink2);white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-current="page"]{color:var(--ink);border-bottom-color:var(--blue);font-weight:600}
+.hprog{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink2);flex:none;padding-left:12px}
+.hprog b{font-family:var(--cond);font-size:18px;color:var(--ink);font-weight:600}
+.hbar{width:90px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.hbar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--blue));width:0;transition:width .4s}
+
+main{padding:36px 0 56px;min-height:70vh}
+.view>*+*{margin-top:26px}
+.lede{color:var(--ink2);max-width:60ch;margin-top:10px;font-size:16.5px}
+.pagehead{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.pagehead p{color:var(--ink2);max-width:62ch;margin-top:6px}
+
+/* console hero */
+.console{background:var(--console);color:var(--c-white);border-radius:10px;padding:22px 26px;font:13px/1.95 var(--mono);overflow-x:auto;box-shadow:0 22px 44px -28px rgba(14,26,51,.7)}
+.cl{white-space:nowrap}
+.cl .k{color:var(--c-blue)}
+.cl .w{color:var(--c-white)}
+.cl.dim{color:var(--c-dim)}
+.jobname{font:inherit;color:var(--c-yellow);background:rgba(255,255,255,.07);border:0;border-bottom:1px dashed var(--c-dim);padding:0 4px;width:17ch;text-transform:uppercase;border-radius:2px}
+.jobname::placeholder{color:#B7A66A}
+.jobname:focus-visible{outline:1px solid var(--c-blue);outline-offset:1px}
+.step{display:grid;grid-template-columns:10ch 21ch minmax(0,1fr) 8ch 11ch 8ch;gap:0 14px;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;padding:0 8px;margin:0 -8px;border-radius:4px;white-space:nowrap}
+.step:hover{background:rgba(255,255,255,.07)}
+.step .sn{color:var(--c-blue)}
+.step .sx{color:var(--c-white)}
+.step .sx em{font-style:normal;color:var(--c-turq)}
+.step .sd{color:var(--c-dim);overflow:hidden;text-overflow:ellipsis}
+.step .sw{color:var(--c-dim)}
+.step .sb{letter-spacing:-1px}
+.step .sr{text-align:right}
+.step[data-s="Completed"] .sb,.step[data-s="Completed"] .sr{color:var(--c-green)}
+.step[data-s="In Progress"] .sb,.step[data-s="In Progress"] .sr{color:var(--c-yellow)}
+.step[data-s="Not Started"] .sb,.step[data-s="Not Started"] .sr{color:#5E7099}
+@media (prefers-reduced-motion:no-preference){
+  .console.play .step{animation:run .45s both;animation-delay:var(--d)}
+  @keyframes run{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+}
+@media (max-width:820px){
+  .step{grid-template-columns:10ch minmax(0,1fr) 11ch 8ch}
+  .step .sx,.step .sd{display:none}
+  .step .sw{display:none}
+}
+
+/* stat strip */
+.strip{display:grid;grid-template-columns:repeat(6,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.strip>div{padding:14px 18px 14px}
+.strip>div+div{border-left:1px solid var(--line)}
+.strip b{display:block;font-family:var(--cond);font-weight:600;font-size:30px;line-height:1.1}
+.strip b small{font-size:16px;color:var(--ink2);font-weight:500}
+.strip span{font-size:13px;color:var(--ink2)}
+@media (max-width:900px){.strip{grid-template-columns:repeat(3,1fr)}.strip>div:nth-child(4){border-left:0}.strip>div:nth-child(n+4){border-top:1px solid var(--line)}}
+@media (max-width:520px){.strip{grid-template-columns:repeat(2,1fr)}.strip>div{border-left:0!important}.strip>div:nth-child(even){border-left:1px solid var(--line)!important}.strip>div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* panels */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.cols.three{grid-template-columns:1.2fr 1fr 1fr}
+@media (max-width:980px){.cols.three{grid-template-columns:1fr 1fr}.cols.three>:first-child{grid-column:1/-1}}
+@media (max-width:760px){.cols,.cols.three{grid-template-columns:1fr}}
+.panel{background:var(--sheet);border:1px solid var(--line);border-radius:8px;padding:22px 24px}
+.panel>h2+*{margin-top:14px}
+.panel .sub{color:var(--ink2);font-size:13.5px}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:8px 14px;font-size:14.5px}
+.kv dt{color:var(--ink2)}
+.kv dd{margin:0;font-weight:500}
+.meter{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;background:var(--teal);border-radius:4px}
+.bigweek{font-family:var(--cond);font-weight:600;font-size:34px;line-height:1}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;border-top:1px solid var(--line)}
+.list li:first-child{border-top:0}
+.list .t{font-weight:500}
+.list .m{color:var(--ink2);font-size:13px;white-space:nowrap}
+.group-label{font-size:13px;color:var(--ink2);font-weight:600;margin:14px 0 2px}
+.group-label:first-of-type{margin-top:0}
+.link{background:none;border:0;padding:0;color:var(--blue);font-weight:500;text-decoration:underline;text-underline-offset:3px}
+.link:hover{color:#1A4FB0}
+
+/* gantt */
+.gscroll{overflow-x:auto}
+.gantt{min-width:760px}
+.grow{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;padding:4px 0}
+.glabel{font-size:13.5px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.glabel i{width:10px;height:10px;border-radius:2px;flex:none}
+.gweeks{display:grid;grid-template-columns:repeat(24,1fr);font-size:11px;color:var(--ink2);text-align:center}
+.gtrack{position:relative;display:grid;grid-template-columns:repeat(24,1fr);height:26px;background:linear-gradient(to right,var(--line) 1px,transparent 1px) 0 0/calc(100%/24) 100%,var(--soft);border-radius:4px}
+.gbar{position:relative;background:color-mix(in srgb,var(--c) 22%,white);border:1px solid var(--c);border-radius:4px;margin:3px 1px;overflow:hidden;display:flex;align-items:center}
+.gbar span{position:absolute;inset:0 auto 0 0;background:var(--c);opacity:.9}
+.gbar b{position:relative;font-size:11.5px;font-weight:600;padding:0 6px;color:var(--ink);text-shadow:0 0 3px #fff,0 0 3px #fff}
+.gtoday{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--red);z-index:2;border-radius:1px}
+.gnote{font-size:12.5px;color:var(--ink2);margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.gnote i{display:inline-block;width:2px;height:12px;background:var(--red);margin-right:6px;vertical-align:-2px}
+
+/* bar rows */
+.brow{display:grid;grid-template-columns:130px 1fr 74px;gap:12px;align-items:center;padding:6px 0;font-size:13.5px}
+.brow .bt{height:10px;background:var(--soft);border-radius:5px;overflow:hidden;position:relative;border:1px solid var(--line)}
+.brow .bt i{position:absolute;left:0;top:0;bottom:0;border-radius:0 5px 5px 0}
+.brow .bt i.p{background:#BFD0EA;height:100%}
+.brow .bt i.s{background:var(--blue);height:50%;top:auto;bottom:0}
+.brow .n{text-align:right;color:var(--ink2);font-size:12.5px;white-space:nowrap}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--ink2);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.funnel{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.funnel div{padding:12px 6px;text-align:center;border-left:1px solid var(--line)}
+.funnel div:first-child{border-left:0}
+.funnel b{display:block;font-family:var(--cond);font-size:26px;font-weight:600;line-height:1.1}
+.funnel span{font-size:12.5px;color:var(--ink2)}
+
+/* toolbar */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.toolbar input[type=search],.toolbar select,.field{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:8px 12px;min-width:0}
+.toolbar input[type=search]{flex:1 1 220px}
+.field{width:100%}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:var(--sheet);border:1px solid var(--line);border-radius:999px;padding:5px 13px;font-size:13.5px;color:var(--ink2)}
+.chip:hover{border-color:#B8C2D2;color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip small{opacity:.7;margin-left:4px}
+
+/* status select */
+select.st{appearance:none;-webkit-appearance:none;border:0;border-radius:999px;padding:6px 28px 6px 13px;font-size:13px;font-weight:600;background-color:#E9EDF3;color:#4A5775;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23000' stroke-opacity='.55' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;cursor:pointer;min-width:118px}
+select.st[data-s="In Progress"],select.st[data-s="Learning"],select.st[data-s="Interview"]{background-color:#FFF1C7;color:#7A5500}
+select.st[data-s="Completed"],select.st[data-s="Ready"],select.st[data-s="Offer"]{background-color:#DDF3E6;color:#1B6139}
+select.st[data-s="Applied"]{background-color:#DCE8FF;color:#1F4FA8}
+select.st[data-s="Rejected"]{background-color:#FBE0E0;color:#8E2525}
+.num,.txt,.dt{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:6px 9px;min-width:0}
+.num{width:76px;text-align:right}
+.txt{width:100%}
+.pri{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:999px;margin-left:8px;vertical-align:1px}
+.pri.High{background:#FBE5D6;color:#8A3B0B}
+.pri.Medium{background:#E6ECF8;color:#2A4A86}
+.pri.Low{background:#EEF0F3;color:#5A6577}
+
+/* grouped lists */
+.ghead{position:sticky;top:46px;z-index:5;display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);padding:14px 0 8px;border-bottom:2px solid var(--ink);margin-top:18px}
+.ghead:first-child{margin-top:0}
+.ghead i.sw{width:12px;height:12px;border-radius:3px;flex:none}
+.ghead h3{margin-right:auto}
+.gstat{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink2)}
+.gstat .mini{width:90px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.gstat .mini i{display:block;height:100%;background:var(--teal)}
+.gstat b{color:var(--ink);font-family:var(--cond);font-size:16px;font-weight:600}
+.row{display:grid;gap:10px 16px;align-items:start;background:var(--sheet);border:1px solid var(--line);border-top:0;padding:14px 16px}
+.row:first-of-type{border-top:0}
+.row[data-status="Completed"]{background:#F6FBF8}
+.trow{grid-template-columns:minmax(0,1.6fr) 100px 130px minmax(0,1fr)}
+.prow{grid-template-columns:minmax(0,1.7fr) 130px 140px minmax(0,1fr)}
+.rrow{grid-template-columns:minmax(0,1.8fr) 120px 130px}
+.row .tt{font-weight:600}
+.row .td{color:var(--ink2);font-size:13.5px;margin-top:2px}
+.row .tr{color:var(--ink2);font-size:12.5px;margin-top:4px}
+.row .tr em{font-style:normal;color:var(--ink)}
+.row label{display:block;font-size:12px;color:var(--ink2);margin-bottom:3px}
+.mono{font-family:var(--mono);font-size:.92em}
+.cost{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:999px;background:#E6F4EC;color:#1B6139}
+.cost.Paid{background:#FBE5D6;color:#8A3B0B}
+@media (max-width:860px){
+  .trow,.prow,.rrow{grid-template-columns:1fr 1fr}
+  .trow>:first-child,.prow>:first-child,.rrow>:first-child{grid-column:1/-1}
+  .trow>:last-child,.prow>:last-child{grid-column:1/-1}
+  .ghead{top:46px}
+}
+.empty{border:1.5px dashed #B8C2D2;border-radius:8px;padding:34px 24px;text-align:center;color:var(--ink2);background:var(--soft)}
+.empty b{display:block;color:var(--ink);font-family:var(--cond);font-size:19px;margin-bottom:4px}
+
+/* phases route */
+.route{position:relative;display:grid;gap:18px;padding-left:6px}
+.route::before{content:"";position:absolute;left:25px;top:14px;bottom:14px;width:2px;background:var(--line)}
+.stop{position:relative;display:grid;grid-template-columns:40px 1fr;gap:18px}
+.node{position:relative;z-index:1;width:40px;height:40px;border-radius:50%;background:var(--c);color:#fff;font-family:var(--cond);font-weight:700;font-size:15px;display:grid;place-items:center;box-shadow:0 0 0 5px var(--paper)}
+.stop .panel{padding:18px 22px}
+.stop .head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.stop .head span{color:var(--ink2);font-size:13.5px}
+.stop dl{display:grid;grid-template-columns:100px 1fr;gap:6px 14px;margin:12px 0 0;font-size:14px}
+.stop dt{color:var(--ink2)}
+.stop dd{margin:0}
+.skills{display:flex;gap:6px;flex-wrap:wrap}
+.skills span{background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:1px 8px;font-size:12.5px}
+.stop .foot{display:flex;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap}
+.stop .foot .meter{flex:1 1 160px;margin:0}
+.stop .foot small{color:var(--ink2);font-size:13px}
+
+/* weekly */
+.wsettings{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end}
+.wsettings label{font-size:13px;color:var(--ink2);display:block;margin-bottom:3px}
+.wrow{grid-template-columns:64px 190px minmax(0,1.6fr) minmax(0,1.3fr) 96px 90px 130px}
+.whead{display:grid;grid-template-columns:64px 190px minmax(0,1.6fr) minmax(0,1.3fr) 96px 90px 130px;gap:16px;padding:8px 16px;font-size:12.5px;color:var(--ink2);font-weight:600;border-bottom:2px solid var(--ink)}
+.wrow.now{box-shadow:inset 4px 0 0 var(--red);background:#FFFBEF}
+.wk{font-family:var(--cond);font-weight:600;font-size:22px;line-height:1}
+.wtot{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;padding:14px 16px;background:var(--sheet);border:1px solid var(--line);border-top:2px solid var(--ink);font-weight:600}
+@media (max-width:1000px){
+  .whead{display:none}
+  .wrow{grid-template-columns:60px 1fr 1fr}
+  .wrow>:nth-child(3),.wrow>:nth-child(4){grid-column:2/-1}
+}
+
+/* interview */
+details.q{background:var(--sheet);border:1px solid var(--line);border-radius:8px}
+details.q+details.q{margin-top:8px}
+details.q summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:center;padding:13px 16px}
+details.q summary::-webkit-details-marker{display:none}
+details.q summary::before{content:"";width:8px;height:8px;border-right:2px solid var(--ink2);border-bottom:2px solid var(--ink2);transform:rotate(-45deg);transition:transform .15s;flex:none;margin-right:4px}
+details.q[open] summary::before{transform:rotate(45deg)}
+details.q summary .qt{font-weight:600;flex:1}
+details.q summary .cat{font-size:12.5px;color:var(--ink2);white-space:nowrap}
+.dot{width:10px;height:10px;border-radius:50%;background:#C5CCD8;flex:none}
+.dot[data-s="Learning"]{background:var(--amber)}
+.dot[data-s="Ready"]{background:var(--green)}
+.qbody{padding:2px 16px 16px 40px;border-top:1px solid var(--line);margin:0 0 0;padding-top:14px}
+.qbody p{max-width:75ch}
+.qctl{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;margin-top:14px}
+.qctl label{font-size:12px;color:var(--ink2);display:block;margin-bottom:3px}
+.qctl select:not(.st){border:1px solid var(--line);border-radius:6px;padding:6px 10px;background:var(--sheet)}
+
+/* jobs */
+.addform{display:grid;grid-template-columns:repeat(6,1fr);gap:10px 12px;align-items:end}
+.addform label{font-size:12.5px;color:var(--ink2);display:block;margin-bottom:3px}
+.addform .span2{grid-column:span 2}
+.btn{background:var(--ink);color:#fff;border:0;border-radius:6px;padding:9px 18px;font-weight:600}
+.btn:hover{background:#243659}
+@media (max-width:900px){.addform{grid-template-columns:1fr 1fr}.addform .span2{grid-column:1/-1}}
+.jrow{grid-template-columns:minmax(0,1.3fr) minmax(0,1.3fr) 130px 130px 130px 54px}
+.jrow .sm{font-size:13px;color:var(--ink2)}
+@media (max-width:860px){.jrow{grid-template-columns:1fr 1fr}.jrow>:first-child{grid-column:1/-1}}
+.del{background:none;border:1px solid var(--line);border-radius:6px;padding:5px 9px;color:var(--ink2);font-size:13px}
+.del:hover{border-color:var(--red);color:var(--red)}
+
+footer{border-top:1px solid var(--line);padding:18px 0 40px;color:var(--ink2);font-size:13px}
+#toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;font-size:14px;z-index:50}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media print{.tabs,.tools,#toast{display:none}.console{box-shadow:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap brand">
+    <div class="logo">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="3" y="3" width="28" height="9" rx="2" fill="#14213D"/><rect x="3" y="12.5" width="28" height="9" rx="2" fill="#2F6FDE"/><rect x="3" y="22" width="28" height="9" rx="2" fill="#12A4A4"/>
+        <circle cx="8" cy="7.5" r="1.6" fill="#7AE08F"/><circle cx="8" cy="17" r="1.6" fill="#F8D966"/><circle cx="8" cy="26.5" r="1.6" fill="#fff"/>
+        <rect x="13" y="6.7" width="14" height="1.6" rx=".8" fill="#fff" opacity=".35"/><rect x="13" y="16.2" width="14" height="1.6" rx=".8" fill="#fff" opacity=".4"/><rect x="13" y="25.7" width="14" height="1.6" rx=".8" fill="#fff" opacity=".4"/>
+      </svg>
+      <div><b>Mainframe career roadmap</b><span>Beginner to job-ready in 24 weeks</span></div>
+    </div>
+    <div class="tools">
+      <button class="tbtn" data-click="export" type="button">Export progress</button>
+      <button class="tbtn" data-click="import" type="button">Import progress</button>
+      <button class="tbtn" data-click="reset" id="resetBtn" type="button">Reset</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
+  </div>
+</header>
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <div class="tablist" id="tablist"></div>
+    <div class="hprog" title="Overall progress, weighted by estimated hours"><span>Overall</span><b id="hpct">0%</b><div class="hbar"><i id="hfill"></i></div></div>
+  </div>
+</nav>
+<main><div class="wrap"><div class="view" id="view"></div></div></main>
+<footer><div class="wrap" id="foot"></div></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const D = {"phases": [{"id": "P0", "name": "P0 Foundations", "s": 1, "e": 3, "goal": "Be comfortable with IT vocabulary, SQL and basic programming logic.", "milestone": "Write a program that reads a file, filters records and prints a report.", "skills": "Binary/hex, EBCDIC, Linux CLI, SQL, Python logic"}, {"id": "P1", "name": "P1 z/OS Basics", "s": 4, "e": 6, "goal": "Understand what mainframes are and navigate z/OS comfortably.", "milestone": "Log in to z/OS, create datasets, edit in ISPF, explain PS vs PDS vs VSAM.", "skills": "z/OS, JES, SDSF, datasets, catalogs, TSO/ISPF"}, {"id": "P2", "name": "P2 JCL", "s": 7, "e": 10, "goal": "Run and debug batch jobs confidently (asked in almost every interview).", "milestone": "Write a multi-step JCL from scratch and debug a failed job from its output.", "skills": "JOB/EXEC/DD, DISP, PROC, GDG, IEBGENER, IDCAMS, DFSORT"}, {"id": "P3", "name": "P3 COBOL", "s": 9, "e": 16, "goal": "Write, compile and debug batch COBOL programs.", "milestone": "Write a report, control-break and match-merge program without a reference.", "skills": "Divisions, PIC/COMP-3, files, tables, CALL, copybooks"}, {"id": "P4", "name": "P4 DB2", "s": 15, "e": 18, "goal": "Use DB2 from SPUFI and from embedded SQL in COBOL.", "milestone": "Explain precompile-compile-link-bind and handle SQLCODEs correctly.", "skills": "SQL, SPUFI, cursors, host variables, bind, locking"}, {"id": "P5", "name": "P5 VSAM", "s": 17, "e": 18, "goal": "Define, load and access VSAM files from JCL and COBOL.", "milestone": "Define a KSDS, load it with REPRO and update it randomly from COBOL.", "skills": "KSDS/ESDS/RRDS, CI/CA, IDCAMS, access modes"}, {"id": "P6", "name": "P6 CICS", "s": 19, "e": 22, "goal": "Understand online transaction processing.", "milestone": "Explain and implement a pseudo-conversational transaction.", "skills": "BMS, COMMAREA, EXEC CICS, queues, CEMT/CEDF"}, {"id": "P7", "name": "P7 Modern Tools", "s": 20, "e": 24, "goal": "Add skills that bridge legacy and modern mainframe work.", "milestone": "Submit a job and edit code through Zowe CLI / VS Code.", "skills": "REXX, Zowe, Git, CI/CD, MQ, z/OS Connect, schedulers"}, {"id": "P8", "name": "P8 Portfolio & Jobs", "s": 22, "e": 24, "goal": "Prove your skills and get interviews.", "milestone": "Capstone project on GitHub, resume ready, 10+ applications sent.", "skills": "Portfolio, resume, interviews, applications"}], "topics": [{"id": "T01", "phase": "P0 Foundations", "topic": "Computing basics", "details": "CPU, memory, storage, binary/hex, ASCII vs EBCDIC encoding", "priority": "Medium", "hours": 6, "resource": "Any intro-to-computing course"}, {"id": "T02", "phase": "P0 Foundations", "topic": "OS and command line basics", "details": "Files, processes, permissions, basic Linux commands", "priority": "Medium", "hours": 6, "resource": "Linux basics tutorial"}, {"id": "T03", "phase": "P0 Foundations", "topic": "SQL fundamentals", "details": "SELECT, WHERE, JOIN, GROUP BY, INSERT/UPDATE/DELETE, subqueries (needed for DB2)", "priority": "High", "hours": 10, "resource": "Any SQL course; practice on SQLite/PostgreSQL"}, {"id": "T04", "phase": "P0 Foundations", "topic": "Programming logic", "details": "Variables, loops, conditionals, functions, file I/O (Python recommended)", "priority": "High", "hours": 12, "resource": "Python beginner course"}, {"id": "T05", "phase": "P1 z/OS Basics", "topic": "Why mainframes exist", "details": "Throughput, reliability (RAS), security, scalability; batch vs online processing", "priority": "Medium", "hours": 3, "resource": "IBM Redbook: z/OS Basics"}, {"id": "T06", "phase": "P1 z/OS Basics", "topic": "IBM Z hardware overview", "details": "LPARs, Parallel Sysplex, channels, DASD, specialty engines", "priority": "Low", "hours": 4, "resource": "IBM Redbook: z/OS Basics"}, {"id": "T07", "phase": "P1 z/OS Basics", "topic": "z/OS fundamentals", "details": "Address spaces, JES2/JES3, SDSF, job lifecycle, spool", "priority": "High", "hours": 6, "resource": "IBM Redbook: z/OS Basics"}, {"id": "T08", "phase": "P1 z/OS Basics", "topic": "Datasets and catalogs", "details": "PS, PDS/PDSE, VSAM; HLQ.MLQ.LLQ naming; RECFM (FB/VB), LRECL, BLKSIZE; catalogs and VTOC", "priority": "High", "hours": 6, "resource": "IBM Redbook: z/OS Basics"}, {"id": "T09", "phase": "P1 z/OS Basics", "topic": "TSO/ISPF hands-on", "details": "Menus, editor line/primary commands (FIND, CHANGE, SUBMIT), browse, 3.2/3.4 utilities", "priority": "High", "hours": 8, "resource": "IBM Z Xplore / Master the Mainframe"}, {"id": "T10", "phase": "P2 JCL", "topic": "JOB, EXEC and DD statements", "details": "Parameters, positional vs keyword, JOB card, CLASS, MSGCLASS, REGION", "priority": "High", "hours": 6, "resource": "Murach's OS/390 and z/OS JCL; IBM docs"}, {"id": "T11", "phase": "P2 JCL", "topic": "DISP, SPACE, DCB, UNIT", "details": "NEW/OLD/SHR/MOD; CATLG/DELETE/KEEP/PASS; space units; RECFM/LRECL/BLKSIZE", "priority": "High", "hours": 6, "resource": "IBM JCL reference"}, {"id": "T12", "phase": "P2 JCL", "topic": "Condition codes and control", "details": "Return codes, COND vs IF/THEN/ELSE/ENDIF, abend vs non-zero RC", "priority": "High", "hours": 4, "resource": "IBM JCL reference"}, {"id": "T13", "phase": "P2 JCL", "topic": "PROCs, symbolics, INCLUDE, JCLLIB", "details": "Cataloged vs in-stream PROC, overrides, SET, symbolic parameters", "priority": "Medium", "hours": 4, "resource": "IBM JCL reference"}, {"id": "T14", "phase": "P2 JCL", "topic": "Generation Data Groups (GDG)", "details": "Base definition, (0), (-1), (+1) references, LIMIT, SCRATCH", "priority": "Medium", "hours": 3, "resource": "IBM DFSMS docs"}, {"id": "T15", "phase": "P2 JCL", "topic": "Basic utilities", "details": "IEFBR14, IEBGENER, IEBCOPY and when to use each", "priority": "High", "hours": 5, "resource": "IBM utilities reference"}, {"id": "T16", "phase": "P2 JCL", "topic": "IDCAMS", "details": "DEFINE CLUSTER/GDG, REPRO, LISTCAT, PRINT, DELETE, ALTER", "priority": "High", "hours": 5, "resource": "IBM DFSMS Access Method Services"}, {"id": "T17", "phase": "P2 JCL", "topic": "DFSORT / ICETOOL", "details": "SORT FIELDS, INCLUDE/OMIT, OUTREC/BUILD, SUM, MERGE, removing duplicates, ICETOOL ops", "priority": "High", "hours": 8, "resource": "IBM DFSORT guide"}, {"id": "T18", "phase": "P2 JCL", "topic": "Job output and abends", "details": "SDSF (JESMSGLG, JESJCL, SYSOUT), JCL errors, S0C7, S0C4, S806, SB37/SD37/SE37", "priority": "High", "hours": 5, "resource": "SDSF practice on Z Xplore"}, {"id": "T19", "phase": "P3 COBOL", "topic": "Program structure", "details": "Four divisions, sections, paragraphs, columns/area A and B", "priority": "High", "hours": 4, "resource": "Open Mainframe Project COBOL course"}, {"id": "T20", "phase": "P3 COBOL", "topic": "Data types and PICTURE", "details": "PIC 9/X/A/S/V, DISPLAY vs COMP vs COMP-3, editing pictures, MOVE rules", "priority": "High", "hours": 6, "resource": "Murach's Mainframe COBOL"}, {"id": "T21", "phase": "P3 COBOL", "topic": "Data structures", "details": "Level numbers, group items, REDEFINES, OCCURS, 88-levels, RENAMES", "priority": "High", "hours": 6, "resource": "Murach's Mainframe COBOL"}, {"id": "T22", "phase": "P3 COBOL", "topic": "File handling", "details": "SELECT/ASSIGN, FD, OPEN/READ/WRITE/CLOSE, file status codes, ORGANIZATION types", "priority": "High", "hours": 8, "resource": "Murach's Mainframe COBOL"}, {"id": "T23", "phase": "P3 COBOL", "topic": "Control flow", "details": "IF, EVALUATE, PERFORM variants (UNTIL, VARYING, TIMES, THRU), GO TO awareness", "priority": "High", "hours": 6, "resource": "Open Mainframe Project COBOL course"}, {"id": "T24", "phase": "P3 COBOL", "topic": "Arithmetic and string handling", "details": "COMPUTE, ROUNDED, ON SIZE ERROR; STRING, UNSTRING, INSPECT, reference modification", "priority": "Medium", "hours": 5, "resource": "Murach's Mainframe COBOL"}, {"id": "T25", "phase": "P3 COBOL", "topic": "Tables and searching", "details": "OCCURS, subscripts vs indexes, SEARCH vs SEARCH ALL, ASCENDING KEY", "priority": "High", "hours": 6, "resource": "Murach's Mainframe COBOL"}, {"id": "T26", "phase": "P3 COBOL", "topic": "SORT and MERGE verbs", "details": "INPUT/OUTPUT PROCEDURE, USING/GIVING, SD entries", "priority": "Medium", "hours": 4, "resource": "IBM Enterprise COBOL guide"}, {"id": "T27", "phase": "P3 COBOL", "topic": "Subprograms and copybooks", "details": "CALL (static/dynamic), LINKAGE SECTION, BY REFERENCE/CONTENT, COPY, RETURN-CODE", "priority": "High", "hours": 5, "resource": "Murach's Mainframe COBOL"}, {"id": "T28", "phase": "P3 COBOL", "topic": "Classic batch patterns", "details": "Control-break reports, sequential match-merge (master + transactions), validation with reject files", "priority": "High", "hours": 10, "resource": "Practice exercises"}, {"id": "T29", "phase": "P3 COBOL", "topic": "Compile, link and debug", "details": "Compile-link-go JCL, compiler listings, compiler options (SSRANGE, etc.), DISPLAY debugging, IBM Debug Tool", "priority": "High", "hours": 6, "resource": "IBM Enterprise COBOL guide"}, {"id": "T30", "phase": "P4 DB2", "topic": "DB2 architecture", "details": "Subsystems, tablespaces, indexes, catalog, buffer pools (overview)", "priority": "Medium", "hours": 3, "resource": "IBM Db2 for z/OS docs"}, {"id": "T31", "phase": "P4 DB2", "topic": "SQL on DB2 for z/OS", "details": "DDL and DML, joins, views, constraints, NULL handling, date/time functions", "priority": "High", "hours": 6, "resource": "IBM Db2 for z/OS docs"}, {"id": "T32", "phase": "P4 DB2", "topic": "SPUFI and QMF", "details": "Running ad-hoc SQL and saving output", "priority": "Medium", "hours": 3, "resource": "Z Xplore DB2 labs"}, {"id": "T33", "phase": "P4 DB2", "topic": "Embedded SQL in COBOL", "details": "EXEC SQL, host variables, DCLGEN, SQLCA/SQLCODE, null indicators, singleton SELECT", "priority": "High", "hours": 6, "resource": "IBM Db2 application programming guide"}, {"id": "T34", "phase": "P4 DB2", "topic": "Cursors", "details": "DECLARE, OPEN, FETCH, CLOSE; WITH HOLD; updatable cursors", "priority": "High", "hours": 5, "resource": "IBM Db2 application programming guide"}, {"id": "T35", "phase": "P4 DB2", "topic": "Precompile and bind", "details": "DB2 precompiler, DBRM, plans vs packages, bind options, program prep JCL", "priority": "High", "hours": 4, "resource": "IBM Db2 application programming guide"}, {"id": "T36", "phase": "P4 DB2", "topic": "Commit, locking, isolation", "details": "Unit of work, COMMIT/ROLLBACK, lock types, UR/CS/RS/RR isolation, deadlock/timeout SQLCODEs", "priority": "Medium", "hours": 4, "resource": "IBM Db2 docs"}, {"id": "T37", "phase": "P4 DB2", "topic": "EXPLAIN and performance basics", "details": "PLAN_TABLE, index usage, avoiding table scans", "priority": "Low", "hours": 3, "resource": "IBM Db2 performance docs"}, {"id": "T38", "phase": "P5 VSAM", "topic": "VSAM organizations", "details": "KSDS, ESDS, RRDS, LDS and when to use each", "priority": "High", "hours": 4, "resource": "IBM DFSMS docs"}, {"id": "T39", "phase": "P5 VSAM", "topic": "Control intervals and areas", "details": "CI, CA, free space, CI/CA splits and their performance impact", "priority": "Medium", "hours": 3, "resource": "IBM DFSMS docs"}, {"id": "T40", "phase": "P5 VSAM", "topic": "IDCAMS for VSAM", "details": "DEFINE CLUSTER parameters, REPRO, LISTCAT, VERIFY, EXPORT/IMPORT", "priority": "High", "hours": 4, "resource": "IBM DFSMS docs"}, {"id": "T41", "phase": "P5 VSAM", "topic": "VSAM from COBOL", "details": "ACCESS MODE SEQUENTIAL/RANDOM/DYNAMIC, START, READ NEXT, file status codes", "priority": "High", "hours": 5, "resource": "Murach's Mainframe COBOL"}, {"id": "T42", "phase": "P5 VSAM", "topic": "Alternate indexes", "details": "AIX, PATH, BLDINDEX (concept level)", "priority": "Low", "hours": 2, "resource": "IBM DFSMS docs"}, {"id": "T43", "phase": "P6 CICS", "topic": "CICS architecture", "details": "Regions, transactions, tasks, programs, PCT/PPT, CEDA resource definitions", "priority": "High", "hours": 4, "resource": "IBM CICS TS docs"}, {"id": "T44", "phase": "P6 CICS", "topic": "BMS maps", "details": "Mapsets, DFHMSD/DFHMDI/DFHMDF, symbolic map copybooks, attributes, cursor control", "priority": "High", "hours": 6, "resource": "Murach's CICS for the COBOL Programmer"}, {"id": "T45", "phase": "P6 CICS", "topic": "Pseudo-conversational design", "details": "Task ends after each screen, RETURN TRANSID with COMMAREA, EIBCALEN, state handling", "priority": "High", "hours": 8, "resource": "Murach's CICS for the COBOL Programmer"}, {"id": "T46", "phase": "P6 CICS", "topic": "Core EXEC CICS commands", "details": "SEND/RECEIVE MAP, LINK, XCTL, RETURN, READ/WRITE/REWRITE/DELETE, STARTBR/READNEXT/ENDBR", "priority": "High", "hours": 8, "resource": "IBM CICS application programming docs"}, {"id": "T47", "phase": "P6 CICS", "topic": "Response handling and EIB", "details": "RESP/RESP2, DFHRESP, HANDLE CONDITION (legacy), EIBAID, EIBRESP", "priority": "High", "hours": 4, "resource": "IBM CICS docs"}, {"id": "T48", "phase": "P6 CICS", "topic": "Queues", "details": "Temporary storage (TS) and transient data (TD) queues", "priority": "Medium", "hours": 4, "resource": "IBM CICS docs"}, {"id": "T49", "phase": "P6 CICS", "topic": "Syncpoints and abends", "details": "SYNCPOINT/ROLLBACK, HANDLE ABEND, common abends (ASRA, AEI9, AEI0, AICA)", "priority": "Medium", "hours": 3, "resource": "IBM CICS docs"}, {"id": "T50", "phase": "P6 CICS", "topic": "CEMT and CEDF", "details": "Inquiring on resources, new copying a program, execution diagnostic facility", "priority": "Medium", "hours": 4, "resource": "IBM CICS docs"}, {"id": "T51", "phase": "P6 CICS", "topic": "DB2 from CICS", "details": "EXEC SQL inside CICS programs, thread and commit considerations", "priority": "Medium", "hours": 4, "resource": "IBM CICS/Db2 docs"}, {"id": "T52", "phase": "P7 Modern Tools", "topic": "REXX", "details": "Syntax, parsing, stem variables, ADDRESS TSO/ISPEXEC, simple automation", "priority": "Medium", "hours": 8, "resource": "IBM REXX reference"}, {"id": "T53", "phase": "P7 Modern Tools", "topic": "Zowe CLI and VS Code", "details": "Zowe Explorer, profiles, submitting jobs, editing datasets from VS Code", "priority": "High", "hours": 6, "resource": "zowe.org docs"}, {"id": "T54", "phase": "P7 Modern Tools", "topic": "Git and CI/CD for mainframe", "details": "Git basics, branching, Jenkins/pipelines applied to z/OS builds", "priority": "Medium", "hours": 5, "resource": "Open Mainframe Project resources"}, {"id": "T55", "phase": "P7 Modern Tools", "topic": "IBM MQ basics", "details": "Queues, queue managers, put/get, why enterprises use messaging", "priority": "Low", "hours": 4, "resource": "IBM MQ docs"}, {"id": "T56", "phase": "P7 Modern Tools", "topic": "z/OS Connect and REST (concept)", "details": "Exposing mainframe programs as APIs", "priority": "Low", "hours": 3, "resource": "IBM z/OS Connect docs"}, {"id": "T57", "phase": "P7 Modern Tools", "topic": "Job schedulers", "details": "CA-7, Control-M, TWS: dependencies, calendars, restarts (concept)", "priority": "Medium", "hours": 3, "resource": "Vendor overviews"}, {"id": "T58", "phase": "P7 Modern Tools", "topic": "Source and change management", "details": "Endevor, ChangeMan: promote, move, back out (concept)", "priority": "Low", "hours": 2, "resource": "Vendor overviews"}, {"id": "T59", "phase": "P7 Modern Tools", "topic": "Abend analysis", "details": "Reading dumps, CEEDUMP, abend offsets and compile listings, Abend-AID/Fault Analyzer (concept)", "priority": "Medium", "hours": 4, "resource": "IBM Fault Analyzer docs"}, {"id": "T60", "phase": "P8 Portfolio & Jobs", "topic": "GitHub portfolio", "details": "5-8 COBOL programs, 10+ JCL examples, clear READMEs", "priority": "High", "hours": 10, "resource": "GitHub"}, {"id": "T61", "phase": "P8 Portfolio & Jobs", "topic": "Capstone project", "details": "End-to-end batch cycle: validate input, update master, DB2 load, report, JCL flow, simple CICS inquiry", "priority": "High", "hours": 20, "resource": "Your own design"}, {"id": "T62", "phase": "P8 Portfolio & Jobs", "topic": "Resume and LinkedIn", "details": "Keywords: z/OS, COBOL, JCL, DB2, VSAM, CICS, TSO/ISPF, SDSF, REXX, SORT, IDCAMS", "priority": "High", "hours": 3, "resource": "Resume templates"}, {"id": "T63", "phase": "P8 Portfolio & Jobs", "topic": "IBM badges and certificates", "details": "Earn free digital badges / course certificates for your resume", "priority": "Medium", "hours": 4, "resource": "IBM Z Xplore; Open Mainframe Project"}, {"id": "T64", "phase": "P8 Portfolio & Jobs", "topic": "Interview rehearsal", "details": "Mock interviews, rehearse the Interview Prep sheet, scenario questions", "priority": "High", "hours": 10, "resource": "Interview Prep sheet"}, {"id": "T65", "phase": "P8 Portfolio & Jobs", "topic": "Job applications", "details": "Apply to IT services firms, banks, insurers, government-linked organizations", "priority": "High", "hours": 10, "resource": "Job Tracker sheet"}], "weeks": [{"phase": "P0 Foundations", "focus": "Computing basics, OS and command line", "deliverable": "Can explain binary/hex, EBCDIC and basic shell commands"}, {"phase": "P0 Foundations", "focus": "SQL fundamentals", "deliverable": "Write joins and aggregates comfortably"}, {"phase": "P0 Foundations", "focus": "Programming logic (Python)", "deliverable": "File filter program finished"}, {"phase": "P1 z/OS Basics", "focus": "Mainframe concepts, IBM Z hardware, z/OS fundamentals", "deliverable": "Explain batch vs online and what JES does"}, {"phase": "P1 z/OS Basics", "focus": "Datasets and catalogs; get Z Xplore / MTM access", "deliverable": "Create PS and PDS datasets"}, {"phase": "P1 z/OS Basics", "focus": "TSO/ISPF hands-on", "deliverable": "Milestone: navigate z/OS, edit, submit, read SDSF"}, {"phase": "P2 JCL", "focus": "JOB/EXEC/DD, DISP, SPACE, DCB", "deliverable": "First JCL jobs run successfully"}, {"phase": "P2 JCL", "focus": "Condition codes, IF/THEN/ELSE, PROCs, GDG", "deliverable": "Multi-step conditional job"}, {"phase": "P2 JCL + P3 COBOL", "focus": "Utilities (IEFBR14/IEBGENER/IEBCOPY); COBOL program structure", "deliverable": "Hello-world COBOL compiled and run"}, {"phase": "P2 JCL + P3 COBOL", "focus": "IDCAMS, DFSORT; COBOL data types and PICTURE", "deliverable": "Milestone: write and debug a multi-step JCL"}, {"phase": "P3 COBOL", "focus": "Data structures; file handling", "deliverable": "Customer report program"}, {"phase": "P3 COBOL", "focus": "Control flow; arithmetic and string handling", "deliverable": "Validation program"}, {"phase": "P3 COBOL", "focus": "Tables and SEARCH; SORT/MERGE verbs", "deliverable": "Table lookup program"}, {"phase": "P3 COBOL", "focus": "Subprograms and copybooks", "deliverable": "Main + subprogram with copybook"}, {"phase": "P3 COBOL + P4 DB2", "focus": "Control-break and match-merge; DB2 architecture and SQL", "deliverable": "Control-break report finished"}, {"phase": "P3 COBOL + P4 DB2", "focus": "Compile/link/debug; embedded SQL and host variables", "deliverable": "Milestone: COBOL batch programs 1-3 without reference"}, {"phase": "P4 DB2 + P5 VSAM", "focus": "Cursors, precompile and bind; VSAM organizations, CI/CA", "deliverable": "Cursor report program"}, {"phase": "P4 DB2 + P5 VSAM", "focus": "Commit, locking, EXPLAIN; VSAM from COBOL, IDCAMS", "deliverable": "Milestone: explain precompile-bind and handle SQLCODEs"}, {"phase": "P6 CICS", "focus": "CICS architecture; BMS maps", "deliverable": "Mapset created and displayed"}, {"phase": "P6 CICS + P7 Modern Tools", "focus": "Pseudo-conversational design, core commands; REXX", "deliverable": "Inquiry transaction working"}, {"phase": "P6 CICS + P7 Modern Tools", "focus": "Response handling, queues; Zowe CLI and VS Code", "deliverable": "Update transaction with RESP handling"}, {"phase": "P6 CICS + P8 Portfolio", "focus": "Syncpoints, CEMT/CEDF, DB2 from CICS; start portfolio", "deliverable": "Milestone: pseudo-conversational app done; repo created"}, {"phase": "P7 Modern Tools + P8", "focus": "Git/CI-CD, MQ, schedulers; capstone and resume", "deliverable": "Capstone core finished; resume drafted"}, {"phase": "P8 Portfolio & Jobs", "focus": "Interview rehearsal; job applications", "deliverable": "Mock interviews done; 10+ applications sent"}], "exercises": [{"id": "E01", "phase": "P0 Foundations", "title": "File filter program", "desc": "Read a CSV, filter rows by a condition and print a formatted report (any language).", "diff": "Easy"}, {"id": "E02", "phase": "P1 z/OS Basics", "title": "Create datasets in ISPF", "desc": "Allocate a PS dataset and a PDS with 3 members; copy and rename them.", "diff": "Easy"}, {"id": "E03", "phase": "P1 z/OS Basics", "title": "ISPF editor commands", "desc": "Practice FIND, CHANGE ALL, COPY, MOVE, line commands and SUBMIT.", "diff": "Easy"}, {"id": "E04", "phase": "P1 z/OS Basics", "title": "Browse spool in SDSF", "desc": "Submit a job and find JESMSGLG, JESJCL and SYSOUT; note the return code.", "diff": "Easy"}, {"id": "E05", "phase": "P2 JCL", "title": "IEFBR14 allocate/delete", "desc": "Create and delete datasets with IEFBR14 using different DISP values.", "diff": "Easy"}, {"id": "E06", "phase": "P2 JCL", "title": "IEBGENER copy", "desc": "Copy a PS to another PS and print a dataset to SYSOUT.", "diff": "Easy"}, {"id": "E07", "phase": "P2 JCL", "title": "IEBCOPY PDS", "desc": "Copy selected members between PDS libraries; compress a PDS.", "diff": "Medium"}, {"id": "E08", "phase": "P2 JCL", "title": "IDCAMS KSDS", "desc": "Define a KSDS, REPRO data into it, LISTCAT and PRINT it, then delete it.", "diff": "Medium"}, {"id": "E09", "phase": "P2 JCL", "title": "DFSORT tasks", "desc": "Sort, merge, remove duplicates, INCLUDE/OMIT, reformat with OUTREC, add totals with SUM.", "diff": "Medium"}, {"id": "E10", "phase": "P2 JCL", "title": "Conditional multi-step job", "desc": "Build a 4-step job using IF/THEN/ELSE and return codes to skip steps.", "diff": "Medium"}, {"id": "E11", "phase": "P2 JCL", "title": "GDG lifecycle", "desc": "Define a GDG, create 3 generations, read (0) and (-1), roll off the oldest.", "diff": "Medium"}, {"id": "E12", "phase": "P2 JCL", "title": "PROC with symbolics", "desc": "Write a PROC with symbolic parameters and call it with overrides.", "diff": "Medium"}, {"id": "E13", "phase": "P2 JCL", "title": "Debug 5 JCL errors", "desc": "Introduce 5 typical errors (missing DD, wrong DSN, bad DISP...) and fix each from the output.", "diff": "Medium"}, {"id": "E14", "phase": "P3 COBOL", "title": "Customer report", "desc": "Read a customer file and print a formatted report with headings and page counts.", "diff": "Easy"}, {"id": "E15", "phase": "P3 COBOL", "title": "Control-break report", "desc": "Produce subtotals by key and a grand total from a sorted file.", "diff": "Medium"}, {"id": "E16", "phase": "P3 COBOL", "title": "Match-merge update", "desc": "Update a sorted master with a sorted transaction file (add, change, delete).", "diff": "Hard"}, {"id": "E17", "phase": "P3 COBOL", "title": "Validation program", "desc": "Validate fields and write good and bad records to separate files with reason codes.", "diff": "Medium"}, {"id": "E18", "phase": "P3 COBOL", "title": "Table lookup", "desc": "Load a table and use SEARCH ALL to look up codes for each input record.", "diff": "Medium"}, {"id": "E19", "phase": "P3 COBOL", "title": "Subprogram and copybook", "desc": "Main program calls a subprogram passing a copybook-defined record.", "diff": "Medium"}, {"id": "E20", "phase": "P3 COBOL", "title": "Reproduce S0C7", "desc": "Deliberately cause a data exception with bad COMP-3 data, then fix and validate.", "diff": "Medium"}, {"id": "E21", "phase": "P3 COBOL", "title": "UNSTRING parsing", "desc": "Parse delimited input lines into fields and report invalid lines.", "diff": "Medium"}, {"id": "E22", "phase": "P4 DB2", "title": "Create tables in SPUFI", "desc": "Create tables with keys and indexes; load and query sample data.", "diff": "Easy"}, {"id": "E23", "phase": "P4 DB2", "title": "Cursor report program", "desc": "Rewrite the customer report to read from DB2 through a cursor.", "diff": "Medium"}, {"id": "E24", "phase": "P4 DB2", "title": "Update with commit", "desc": "Update rows in a loop with periodic COMMIT and proper SQLCODE checks.", "diff": "Hard"}, {"id": "E25", "phase": "P4 DB2", "title": "Handle SQLCODEs", "desc": "Trigger and handle +100, -803, -811 and -305 with meaningful messages.", "diff": "Medium"}, {"id": "E26", "phase": "P5 VSAM", "title": "Random VSAM update", "desc": "Read and update a KSDS randomly from COBOL; handle file status 23 and 22.", "diff": "Medium"}, {"id": "E27", "phase": "P6 CICS", "title": "BMS inquiry screen", "desc": "Create a mapset and an inquiry transaction reading a VSAM or DB2 record.", "diff": "Hard"}, {"id": "E28", "phase": "P6 CICS", "title": "Pseudo-conversational update", "desc": "Build an update transaction using COMMAREA and RESP error handling.", "diff": "Hard"}, {"id": "E29", "phase": "P6 CICS", "title": "TS queue demo", "desc": "Store and retrieve screen state using a temporary storage queue.", "diff": "Medium"}, {"id": "E30", "phase": "P7 Modern Tools", "title": "REXX utility", "desc": "Write a REXX exec that lists datasets or reformats a file.", "diff": "Medium"}, {"id": "E31", "phase": "P7 Modern Tools", "title": "Zowe CLI job", "desc": "Submit a job, view its output and download a dataset using Zowe CLI.", "diff": "Easy"}, {"id": "E32", "phase": "P7 Modern Tools", "title": "Git your mainframe code", "desc": "Put JCL and COBOL in a Git repo with meaningful commits and a README.", "diff": "Easy"}, {"id": "E33", "phase": "P8 Portfolio & Jobs", "title": "Capstone: batch cycle", "desc": "Input validation, master update, DB2 load, report, JCL flow with return-code handling.", "diff": "Hard"}, {"id": "E34", "phase": "P8 Portfolio & Jobs", "title": "Capstone: README and demo", "desc": "Document the project with architecture notes, run instructions and sample output.", "diff": "Medium"}], "interview": [{"id": "Q01", "cat": "z/OS & Concepts", "q": "What is a mainframe and why is it still used?", "a": "Very high transaction throughput, reliability/availability/serviceability, strong security, backward compatibility; core banking, insurance, airlines, government."}, {"id": "Q02", "cat": "z/OS & Concepts", "q": "ASCII vs EBCDIC?", "a": "Mainframes use EBCDIC; different collating sequence (digits sort after letters), matters for sorting and file transfers."}, {"id": "Q03", "cat": "z/OS & Concepts", "q": "What are LPAR and Parallel Sysplex?", "a": "LPAR = logical partition running its own OS image. Sysplex = cluster of z/OS systems working together for scalability and availability."}, {"id": "Q04", "cat": "z/OS & Concepts", "q": "What does JES do?", "a": "Job Entry Subsystem receives jobs, queues them, schedules execution, and handles spool output (JES2/JES3)."}, {"id": "Q05", "cat": "z/OS & Concepts", "q": "Batch vs online processing?", "a": "Batch: scheduled, no user interaction, high volume (JCL). Online: interactive, immediate response (CICS/IMS)."}, {"id": "Q06", "cat": "z/OS & Concepts", "q": "PS vs PDS vs PDSE?", "a": "PS = sequential. PDS = library of members with a directory (needs compression). PDSE = improved, dynamic directory, no compress."}, {"id": "Q07", "cat": "z/OS & Concepts", "q": "What is a catalog and a VTOC?", "a": "Catalog maps dataset names to volumes; VTOC lists datasets on a DASD volume."}, {"id": "Q08", "cat": "JCL", "q": "Name the three main JCL statements.", "a": "JOB (identifies job), EXEC (runs a program or PROC), DD (defines datasets for a step)."}, {"id": "Q09", "cat": "JCL", "q": "Explain DISP.", "a": "DISP=(status,normal,abnormal). Status: NEW, OLD (exclusive), SHR (shared), MOD (append). Dispositions: CATLG, UNCATLG, KEEP, DELETE, PASS."}, {"id": "Q10", "cat": "JCL", "q": "COND vs IF/THEN/ELSE?", "a": "COND=(code,operator) on JOB/EXEC bypasses a step when the test is true (reads inverted); IF/THEN/ELSE is clearer and can test RC, ABEND, RUN by step."}, {"id": "Q11", "cat": "JCL", "q": "PROC vs INCLUDE?", "a": "PROC = reusable set of steps with symbolic parameters and overrides. INCLUDE = inserts JCL statements from a member."}, {"id": "Q12", "cat": "JCL", "q": "What is a GDG?", "a": "Group of related generations referenced relatively: (0) current, (-1) previous, (+1) new. Base defined with IDCAMS (LIMIT, SCRATCH)."}, {"id": "Q13", "cat": "JCL", "q": "IEFBR14, IEBGENER and IEBCOPY?", "a": "IEFBR14 = does nothing, used to allocate/delete datasets. IEBGENER = copy sequential data. IEBCOPY = copy/compress PDS libraries."}, {"id": "Q14", "cat": "JCL", "q": "What causes SB37, SD37, SE37?", "a": "Out of space: B37 no more space/extents on volume, D37 primary exhausted with no secondary, E37 no more volumes or extents. Fix SPACE parameters."}, {"id": "Q15", "cat": "JCL", "q": "What causes S806?", "a": "Program/load module not found in the search libraries (STEPLIB/JOBLIB/link list)."}, {"id": "Q16", "cat": "JCL", "q": "How do you remove duplicates in SORT?", "a": "SUM FIELDS=NONE on the sort key (or ICETOOL SELECT with FIRST/ALLDUPS options)."}, {"id": "Q17", "cat": "COBOL", "q": "COMP vs COMP-3?", "a": "COMP = binary (2/4/8 bytes by digit count). COMP-3 = packed decimal, two digits per byte plus sign nibble. COMP-3 is common for money."}, {"id": "Q18", "cat": "COBOL", "q": "What does REDEFINES do?", "a": "Gives a different data description to the same storage area; sizes should match."}, {"id": "Q19", "cat": "COBOL", "q": "SEARCH vs SEARCH ALL?", "a": "SEARCH = sequential scan. SEARCH ALL = binary search; table must be sorted with ASCENDING/DESCENDING KEY and indexed."}, {"id": "Q20", "cat": "COBOL", "q": "Subscript vs index?", "a": "Subscript = occurrence number (data item). Index = internal displacement, faster, changed with SET; required by SEARCH."}, {"id": "Q21", "cat": "COBOL", "q": "Common file status codes?", "a": "00 OK, 10 end of file, 22 duplicate key, 23 record not found, 35 file not found on open, 39 attribute mismatch, 41 already open."}, {"id": "Q22", "cat": "COBOL", "q": "Causes and fixes for S0C7?", "a": "Data exception: non-numeric data in a numeric field or uninitialized COMP-3. Initialize fields, validate with IF NUMERIC, check input data."}, {"id": "Q23", "cat": "COBOL", "q": "Causes and fixes for S0C4?", "a": "Protection exception: subscript out of range, invalid pointer/LINKAGE, unopened file. Use SSRANGE, check subscripts and CALL parameters."}, {"id": "Q24", "cat": "COBOL", "q": "PERFORM variants?", "a": "Out-of-line (paragraph), inline, TIMES, UNTIL (TEST BEFORE/AFTER), VARYING, THRU."}, {"id": "Q25", "cat": "COBOL", "q": "Static vs dynamic CALL?", "a": "Static: subprogram link-edited into the caller's load module. Dynamic: loaded at run time. Depends on CALL literal vs variable and DYNAM/NODYNAM option."}, {"id": "Q26", "cat": "COBOL", "q": "Explain control-break logic.", "a": "Read sorted records, compare current key with previous key; on change print subtotal, reset accumulators; print grand total at end."}, {"id": "Q27", "cat": "COBOL", "q": "Explain sequential match-merge.", "a": "Both files sorted by key. Compare keys: equal = apply transaction, master low = write master, transaction low = add/error. Use HIGH-VALUES at EOF."}, {"id": "Q28", "cat": "DB2", "q": "Common SQLCODEs?", "a": "0 success, +100 no row/end of cursor, -803 duplicate key, -811 singleton returned multiple rows, -305 NULL without indicator, -904 resource unavailable, -911 deadlock/timeout rollback."}, {"id": "Q29", "cat": "DB2", "q": "Why use a cursor?", "a": "To process multi-row results one row at a time: DECLARE, OPEN, FETCH (loop until +100), CLOSE."}, {"id": "Q30", "cat": "DB2", "q": "Explain program preparation for DB2 COBOL.", "a": "Precompile (produces modified source + DBRM) -> compile -> link-edit -> bind DBRM into a package/plan."}, {"id": "Q31", "cat": "DB2", "q": "Isolation levels?", "a": "UR (uncommitted read), CS (cursor stability), RS (read stability), RR (repeatable read): increasing lock protection, decreasing concurrency."}, {"id": "Q32", "cat": "DB2", "q": "What is a null indicator?", "a": "Small integer host variable: negative means NULL; needed when column may be NULL else SQLCODE -305."}, {"id": "Q33", "cat": "DB2", "q": "Static vs dynamic SQL?", "a": "Static is bound ahead of time (stable access path, authority at bind); dynamic is prepared at run time."}, {"id": "Q34", "cat": "DB2", "q": "What does EXPLAIN do?", "a": "Writes access path details to PLAN_TABLE to check index use and scans."}, {"id": "Q35", "cat": "VSAM", "q": "Types of VSAM datasets?", "a": "KSDS (key-sequenced), ESDS (entry-sequenced), RRDS (relative record), LDS (linear)."}, {"id": "Q36", "cat": "VSAM", "q": "CI split vs CA split?", "a": "CI split: no room in a control interval, about half the records move to a new CI. CA split: no free CI in the control area, a new CA is allocated."}, {"id": "Q37", "cat": "VSAM", "q": "Key IDCAMS commands?", "a": "DEFINE CLUSTER, REPRO, LISTCAT, PRINT, DELETE, ALTER, VERIFY."}, {"id": "Q38", "cat": "VSAM", "q": "ACCESS MODE options in COBOL?", "a": "SEQUENTIAL, RANDOM, DYNAMIC (mix of both with START/READ NEXT)."}, {"id": "Q39", "cat": "CICS", "q": "What is pseudo-conversational programming?", "a": "Task ends after sending each screen and RETURN TRANSID with COMMAREA restarts the program on the next input; frees resources between interactions."}, {"id": "Q40", "cat": "CICS", "q": "What is the COMMAREA?", "a": "Area used to pass data between program invocations or programs (EIBCALEN = length; zero on first entry)."}, {"id": "Q41", "cat": "CICS", "q": "LINK vs XCTL?", "a": "LINK calls a program and returns to the caller. XCTL transfers control without returning."}, {"id": "Q42", "cat": "CICS", "q": "TS queue vs TD queue?", "a": "TS = temporary storage, random access, reread/update items. TD = sequential, read once (destructive), intra/extrapartition."}, {"id": "Q43", "cat": "CICS", "q": "RESP vs HANDLE CONDITION?", "a": "RESP/RESP2 with DFHRESP tests are the structured, preferred approach; HANDLE CONDITION is legacy GO TO style."}, {"id": "Q44", "cat": "CICS", "q": "Common CICS abends?", "a": "ASRA = program check (like S0C7/S0C4), AEI9 = MAPFAIL, AEI0 = PGMIDERR, AICA = runaway task."}, {"id": "Q45", "cat": "CICS", "q": "What are CEMT and CEDF?", "a": "CEMT = inquire/set resources (e.g., NEWCOPY a program). CEDF = step through EXEC CICS commands for debugging."}, {"id": "Q46", "cat": "Scenarios", "q": "A batch job abended at 2 a.m. What do you do?", "a": "Check SDSF output (JESMSGLG/SYSOUT), find failing step, abend code/RC and message, identify cause, fix or escalate, follow restart procedure, document."}, {"id": "Q47", "cat": "Scenarios", "q": "How do you restart a failed multi-step job?", "a": "Use RESTART= on the JOB card or scheduler restart; clean up partial outputs (e.g., GDG +1 or MOD datasets) first; confirm data integrity."}, {"id": "Q48", "cat": "Scenarios", "q": "How would you find the failing line for an S0C7?", "a": "Use abend offset with compile listing (LIST/OFFSET), CEEDUMP, or Fault Analyzer/Abend-AID; check the data in the failing field."}, {"id": "Q49", "cat": "Scenarios", "q": "A job is running much longer than usual. What do you check?", "a": "SDSF status, dataset enqueue/waits, input volume change, CPU vs I/O, dependent jobs, contact operations/performance team."}, {"id": "Q50", "cat": "Scenarios", "q": "An input file arrives empty or with the wrong count. What now?", "a": "Check record counts against control totals, stop downstream processing, notify the owning team, document and rerun after a corrected file."}], "resources": [{"id": "R01", "name": "IBM Redbook: Introduction to the New Mainframe: z/OS Basics", "type": "Free book", "covers": "P1 z/OS Basics", "cost": "Free", "notes": "Best free starting point for concepts and z/OS terminology."}, {"id": "R02", "name": "IBM Z Xplore", "type": "Hands-on lab", "covers": "P1-P6", "cost": "Free", "notes": "Real z/OS access for practice and badges. Check IBM's site for current availability."}, {"id": "R03", "name": "IBM Master the Mainframe", "type": "Hands-on challenge", "covers": "P1-P3", "cost": "Free", "notes": "Structured challenges on real z/OS. Check IBM's site for current availability."}, {"id": "R04", "name": "Open Mainframe Project COBOL Programming Course", "type": "Free course (GitHub)", "covers": "P3 COBOL", "cost": "Free", "notes": "Open-source COBOL course; works well with the Zowe tools."}, {"id": "R05", "name": "Open Mainframe Project (openmainframeproject.org)", "type": "Community", "covers": "All", "cost": "Free", "notes": "Courses, mentorships, events and open-source mainframe projects."}, {"id": "R06", "name": "Zowe (zowe.org)", "type": "Open-source tooling", "covers": "P7 Modern Tools", "cost": "Free", "notes": "Zowe CLI and Zowe Explorer for VS Code."}, {"id": "R07", "name": "Murach's Mainframe COBOL", "type": "Book", "covers": "P3 COBOL", "cost": "Paid", "notes": "Beginner-friendly textbook with exercises."}, {"id": "R08", "name": "Murach's OS/390 and z/OS JCL", "type": "Book", "covers": "P2 JCL", "cost": "Paid", "notes": "Practical JCL guide."}, {"id": "R09", "name": "Murach's CICS for the COBOL Programmer", "type": "Book", "covers": "P6 CICS", "cost": "Paid", "notes": "Clear coverage of BMS and pseudo-conversational design."}, {"id": "R10", "name": "IBM Enterprise COBOL for z/OS documentation", "type": "Official docs", "covers": "P3 COBOL", "cost": "Free", "notes": "Language reference and programming guide."}, {"id": "R11", "name": "IBM Db2 for z/OS documentation", "type": "Official docs", "covers": "P4 DB2", "cost": "Free", "notes": "SQL reference and application programming guide."}, {"id": "R12", "name": "IBM CICS Transaction Server documentation", "type": "Official docs", "covers": "P6 CICS", "cost": "Free", "notes": "Application programming reference and BMS."}, {"id": "R13", "name": "IBM DFSMS documentation", "type": "Official docs", "covers": "P2 JCL / P5 VSAM", "cost": "Free", "notes": "IDCAMS, GDG, VSAM and utilities."}, {"id": "R14", "name": "Hercules emulator", "type": "Emulator", "covers": "P1 z/OS Basics", "cost": "Free", "notes": "Optional local emulation; setup is complex."}, {"id": "R15", "name": "r/mainframe and LinkedIn mainframe groups", "type": "Community", "covers": "P8 Portfolio & Jobs", "cost": "Free", "notes": "Questions, job leads and career advice."}]};
+
+/* ---------- constants ---------- */
+const TABS=[['dashboard','Dashboard'],['phases','Phases'],['topics','Topics'],['weekly','Weekly plan'],['practice','Practice'],['interview','Interview prep'],['jobs','Job tracker'],['resources','Resources']];
+const COLORS=['#7C8DB5','#4C7DD9','#2F9BC8','#12A4A4','#3DAA7D','#8DB63C','#D9A92B','#E0803A','#C65A6B'];
+const STEPS=[['FOUNDTN','ITBASICS','IT basics, SQL, logic'],['ZOSBASIC','ZOSINTRO','concepts, TSO/ISPF'],['JCLBATCH','IEFBR14','batch jobs, utilities'],['COBOLPGM','IGYCRCTL','batch programming'],['DB2SQL','DSNTEP2','embedded SQL, cursors'],['VSAMIO','IDCAMS','datasets and access'],['CICSTRN','DFHSIP','online transactions'],['MODTOOLS','ZOWECLI','REXX, Zowe, Git, MQ'],['GETHIRED','OFFER','portfolio, applications']];
+const STATUS3=['Not Started','In Progress','Completed'];
+const KEY='mf-roadmap-v1';
+const $=(s,el=document)=>el.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const label=v=>v.charAt(0)+v.slice(1).toLowerCase();
+const clamp=(n,a,b)=>Math.min(b,Math.max(a,n));
+
+/* ---------- storage ---------- */
+let memStore=null,persistOK=true;
+function storeLoad(){try{const r=localStorage.getItem(KEY);return r?JSON.parse(r):null}catch(e){persistOK=false;return memStore}}
+function storeSave(){try{localStorage.setItem(KEY,JSON.stringify(S));persistOK=true}catch(e){persistOK=false;memStore=JSON.parse(JSON.stringify(S))}paintFoot()}
+function nextMonday(){const d=new Date();d.setHours(0,0,0,0);const add=(8-d.getDay())%7;d.setDate(d.getDate()+add);return iso(d)}
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const defaults=()=>({name:'',start:nextMonday(),weekly:12,topics:{},weeks:{},practice:{},interview:{},resources:{},jobs:[]});
+let S=Object.assign(defaults(),storeLoad()||{});
+let tab='dashboard';
+const F={tp:'',ts:'',tq:'',pp:'',ps:'',iq:'',ic:'',is:''};
+
+/* ---------- state helpers ---------- */
+const T=id=>S.topics[id]||(S.topics[id]={status:'Not Started',hours:0,notes:''});
+const W=n=>S.weeks[n]||(S.weeks[n]={actual:0,status:'Not Started'});
+const P=id=>S.practice[id]||(S.practice[id]={status:'Not Started',date:'',notes:''});
+const Q=id=>S.interview[id]||(S.interview[id]={status:'Not Started',conf:''});
+const R=id=>S.resources[id]||(S.resources[id]={status:'Not Started'});
+const w3=s=>s==='Completed'?1:s==='In Progress'?.5:0;
+const phaseColor=name=>{const i=D.phases.findIndex(p=>p.name===name);return COLORS[i<0?0:i]};
+
+function phaseStats(ph){
+  let n=0,done=0,hp=0,hw=0,hs=0;
+  D.topics.forEach(t=>{if(t.phase!==ph.name)return;const st=T(t.id);n++;hp+=t.hours;hw+=t.hours*w3(st.status);hs+=Number(st.hours)||0;if(st.status==='Completed')done++});
+  return {n,done,hp,hs,pct:hp?hw/hp:0,status:hp&&hw>=hp?'Completed':hw>0?'In Progress':'Not Started'};
+}
+function overall(){
+  let n=0,done=0,hp=0,hw=0,hs=0;
+  D.topics.forEach(t=>{const st=T(t.id);n++;hp+=t.hours;hw+=t.hours*w3(st.status);hs+=Number(st.hours)||0;if(st.status==='Completed')done++});
+  const pd=D.exercises.filter(e=>P(e.id).status==='Completed').length;
+  const ir=D.interview.filter(q=>Q(q.id).status==='Ready').length;
+  return {n,done,hp,hs,pct:hp?hw/hp:0,pd,pn:D.exercises.length,ir,iq:D.interview.length};
+}
+function parseDate(s){const [y,m,d]=String(s).split('-').map(Number);return new Date(y||2026,(m||1)-1,d||1)}
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const fmt=d=>d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+function weekInfo(){
+  const st=parseDate(S.start);const t=new Date();t.setHours(0,0,0,0);
+  const days=Math.round((t-st)/864e5);
+  return {st,days,wk:days<0?0:Math.min(24,Math.floor(days/7)+1),done:days>=168};
+}
+const weekRange=n=>{const a=addDays(parseDate(S.start),7*(n-1));return [a,addDays(a,6)]};
+const pctTxt=p=>Math.round(p*100)+'%';
+const hrs=n=>(Math.round(n*10)/10).toString();
+
+/* ---------- small builders ---------- */
+function statusSel(scope,id,cur,list){
+  const l=list||STATUS3;
+  return `<select class="st" data-s="${esc(cur)}" data-f="${scope}|${esc(id)}|status" aria-label="Status">${l.map(v=>`<option value="${v}"${v===cur?' selected':''}>${label(v)}</option>`).join('')}</select>`;
+}
+const empty=(h,p)=>`<div class="empty"><b>${h}</b>${p}</div>`;
+
+/* ---------- views ---------- */
+function viewDashboard(){
+  const o=overall(),wi=weekInfo(),n=wi.wk||1,wp=D.weeks[n-1],wl=W(n),rng=weekRange(n);
+  const phs=D.phases.map((p,i)=>({p,i,s:phaseStats(p)}));
+  const target=addDays(parseDate(S.start),167);
+  const rc={'Completed':'RC=0000','In Progress':'ACTIVE','Not Started':'QUEUED'};
+  const steps=phs.map(({p,i,s})=>{
+    const filled=Math.round(s.pct*10);
+    const bar='█'.repeat(filled)+'░'.repeat(10-filled);
+    const st=STEPS[i];
+    return `<button class="step" type="button" data-click="goPhase" data-id="${esc(p.name)}" data-s="${s.status}" style="--d:${140+i*90}ms" aria-label="${esc(p.name)}, ${pctTxt(s.pct)} complete. Open topics">
+      <span class="sn">//${st[0]}</span><span class="sx">EXEC PGM=<em>${st[1]}</em></span><span class="sd">${esc(st[2])}</span><span class="sw">WK ${p.s}-${p.e}</span><span class="sb" aria-hidden="true">${bar}</span><span class="sr">${rc[s.status]}</span></button>`;
+  }).join('');
+  const inprog=D.topics.filter(t=>T(t.id).status==='In Progress').slice(0,4);
+  const nextUp=D.topics.filter(t=>T(t.id).status==='Not Started').slice(0,4);
+  const li=t=>`<li><span class="t">${esc(t.topic)}</span><span class="m">${esc(t.phase.split(' ')[0])} · ${t.hours} h</span></li>`;
+  const todayFrac=wi.days>=0&&wi.days<168?wi.days/168:null;
+  const gantt=phs.map(({p,i,s})=>`<div class="grow"><div class="glabel"><i style="background:${COLORS[i]}"></i>${esc(p.name)}</div>
+    <div class="gtrack"><div class="gbar" style="grid-column:${p.s} / ${p.e+1};--c:${COLORS[i]}"><span style="width:${s.pct*100}%"></span><b>${pctTxt(s.pct)}</b></div>${todayFrac!==null?`<i class="gtoday" style="left:${todayFrac*100}%"></i>`:''}</div></div>`).join('');
+  const weekNums=Array.from({length:24},(_,i)=>`<span>${i+1}</span>`).join('');
+  const maxH=Math.max(...phs.map(x=>Math.max(x.s.hp,x.s.hs,1)));
+  const hoursRows=phs.map(({p,s})=>`<div class="brow"><span>${esc(p.name)}</span><div class="bt"><i class="p" style="width:${s.hp/maxH*100}%"></i><i class="s" style="width:${s.hs/maxH*100}%"></i></div><span class="n">${hrs(s.hs)} / ${s.hp} h</span></div>`).join('');
+  const cats=[...new Set(D.interview.map(q=>q.cat))];
+  const catRows=cats.map(c=>{const qs=D.interview.filter(q=>q.cat===c);const r=qs.filter(q=>Q(q.id).status==='Ready').length;return `<div class="brow"><span>${esc(c)}</span><div class="bt"><i class="p" style="width:${r/qs.length*100}%;background:var(--green);height:100%"></i></div><span class="n">${r} / ${qs.length}</span></div>`}).join('');
+  const jc=k=>S.jobs.filter(j=>j.status===k).length;
+  const applied=S.jobs.filter(j=>['Applied','Interview','Offer','Rejected'].includes(j.status)).length;
+  return `
+  <section>
+    <h1>From first login to first offer</h1>
+    <p class="lede">Your 24-week plan for becoming a mainframe developer: z/OS, JCL, COBOL, DB2, VSAM and CICS. Each phase below is a step in your job; click one to open its topics.</p>
+  </section>
+  <section class="console ${heroPlayed?'':'play'}" aria-label="Roadmap shown as a JCL job">
+    <div class="cl"><span class="k">//CAREER</span>  <span class="w">JOB</span> (MAINFRAME),'<input class="jobname" data-f="set|name|name" value="${esc(S.name)}" placeholder="YOUR NAME" maxlength="18" aria-label="Your name for the job card">',CLASS=A</div>
+    <div class="cl dim">//*  START ${fmt(wi.st)}   TARGET ${fmt(target)}   WEEK ${wi.wk} OF 24</div>
+    ${steps}
+    <div class="cl dim">//*  OVERALL ${pctTxt(o.pct)}   TOPICS ${o.done}/${o.n}   HOURS ${hrs(o.hs)}/${o.hp}</div>
+    <div class="cl">/*</div>
+  </section>
+  <section class="strip" aria-label="Progress summary">
+    <div><b>${pctTxt(o.pct)}</b><span>Overall progress</span></div>
+    <div><b>${o.done}<small> / ${o.n}</small></b><span>Topics completed</span></div>
+    <div><b>${hrs(o.hs)}<small> / ${o.hp}</small></b><span>Hours studied</span></div>
+    <div><b>${o.pd}<small> / ${o.pn}</small></b><span>Exercises done</span></div>
+    <div><b>${o.ir}<small> / ${o.iq}</small></b><span>Interview answers ready</span></div>
+    <div><b>${applied}</b><span>Applications sent</span></div>
+  </section>
+  <div class="cols">
+    <section class="panel">
+      <h2>${wi.wk===0?'Week 1 preview':wi.done?'Plan period finished':'This week'}</h2>
+      <p class="sub">${wi.wk===0?`Your plan starts on ${fmt(wi.st)}.`:`Week ${n} of 24, ${fmt(rng[0])} to ${fmt(rng[1])}`}</p>
+      <dl class="kv" style="margin-top:14px">
+        <dt>Phase</dt><dd>${esc(wp.phase)}</dd>
+        <dt>Study</dt><dd>${esc(wp.focus)}</dd>
+        <dt>Checkpoint</dt><dd>${esc(wp.deliverable)}</dd>
+        <dt>Hours</dt><dd>${hrs(Number(wl.actual)||0)} logged of ${S.weekly} planned
+          <div class="meter"><i style="width:${clamp((Number(wl.actual)||0)/(S.weekly||1),0,1)*100}%"></i></div></dd>
+      </dl>
+      <p style="margin-top:14px"><button class="link" type="button" data-click="go" data-id="weekly">Open weekly plan</button></p>
+    </section>
+    <section class="panel">
+      <h2>What's next</h2>
+      <p class="group-label">In progress</p>
+      ${inprog.length?`<ul class="list">${inprog.map(li).join('')}</ul>`:`<p class="sub">Nothing started yet. Pick a topic and set it to In progress.</p>`}
+      <p class="group-label">Up next</p>
+      ${nextUp.length?`<ul class="list">${nextUp.map(li).join('')}</ul>`:`<p class="sub">Every topic has been started. Keep going.</p>`}
+      <p style="margin-top:14px"><button class="link" type="button" data-click="go" data-id="topics">Open all topics</button></p>
+    </section>
+  </div>
+  <section class="panel">
+    <h2>24-week timeline</h2>
+    <div class="gscroll"><div class="gantt" style="margin-top:14px">
+      <div class="grow"><div></div><div class="gweeks">${weekNums}</div></div>
+      ${gantt}
+    </div></div>
+    <div class="gnote"><span>Bars fill as topics are completed (week numbers along the top).</span>${todayFrac!==null?'<span><i></i>Today</span>':''}</div>
+  </section>
+  <div class="cols three">
+    <section class="panel"><h2>Hours by phase</h2>${hoursRows}<div class="legend"><span><i style="background:#BFD0EA"></i>Planned</span><span><i style="background:var(--blue)"></i>Studied</span></div></section>
+    <section class="panel"><h2>Interview readiness</h2>${catRows}</section>
+    <section class="panel"><h2>Job search</h2>
+      <div class="funnel"><div><b>${jc('Planned')}</b><span>Planned</span></div><div><b>${jc('Applied')}</b><span>Applied</span></div><div><b>${jc('Interview')}</b><span>Interview</span></div><div><b>${jc('Offer')}</b><span>Offer</span></div><div><b>${jc('Rejected')}</b><span>Rejected</span></div></div>
+      <p style="margin-top:14px"><button class="link" type="button" data-click="go" data-id="jobs">${S.jobs.length?'Open job tracker':'Add your first application'}</button></p>
+    </section>
+  </div>`;
+}
+
+function viewPhases(){
+  const stops=D.phases.map((p,i)=>{const s=phaseStats(p);return `
+  <div class="stop" style="--c:${COLORS[i]}"><div class="node" aria-hidden="true">${p.id}</div>
+    <div class="panel">
+      <div class="head"><h3>${esc(p.name.replace(/^P\d\s/,''))}</h3><span>Weeks ${p.s} to ${p.e} · ${s.n} topics · ${s.hp} planned hours</span></div>
+      <dl><dt>Goal</dt><dd>${esc(p.goal)}</dd><dt>Done when</dt><dd>${esc(p.milestone)}</dd><dt>Skills</dt><dd class="skills">${p.skills.split(', ').map(x=>`<span>${esc(x)}</span>`).join('')}</dd></dl>
+      <div class="foot"><div class="meter" role="img" aria-label="${pctTxt(s.pct)} complete"><i style="width:${s.pct*100}%;background:${COLORS[i]}"></i></div><small>${pctTxt(s.pct)} · ${s.done}/${s.n} topics done · ${hrs(s.hs)} h studied</small><button class="link" type="button" data-click="goPhase" data-id="${esc(p.name)}">View topics</button></div>
+    </div></div>`}).join('');
+  return `<section class="pagehead"><div><h1>Phases</h1><p>Nine stages from IT basics to job applications. Phases overlap on purpose, for example JCL and COBOL in weeks 9 and 10.</p></div></section><div class="route">${stops}</div>`;
+}
+
+function groupHead(p,s){
+  return `<div class="ghead" data-phase="${esc(p.name)}"><i class="sw" style="background:${phaseColor(p.name)}"></i><h3>${esc(p.name)}</h3><div class="gstat">${gstat(s)}</div></div>`;
+}
+const gstat=s=>`<span>${s.done}/${s.n} done</span><div class="mini"><i style="width:${s.pct*100}%"></i></div><b>${pctTxt(s.pct)}</b>`;
+
+function topicList(){
+  const q=F.tq.trim().toLowerCase();
+  let out='',shown=0;
+  D.phases.forEach(p=>{
+    if(F.tp&&F.tp!==p.name)return;
+    const rows=D.topics.filter(t=>t.phase===p.name&&(!F.ts||T(t.id).status===F.ts)&&(!q||(t.topic+' '+t.details+' '+t.resource).toLowerCase().includes(q)));
+    if(!rows.length)return;
+    shown+=rows.length;
+    out+=groupHead(p,phaseStats(p))+rows.map(t=>{const st=T(t.id);return `
+    <div class="row trow" data-row data-status="${st.status}">
+      <div><div class="tt">${esc(t.topic)}<span class="pri ${t.priority}">${t.priority}</span></div><div class="td">${esc(t.details)}</div><div class="tr">Resource: <em>${esc(t.resource)}</em></div></div>
+      <div><label for="h-${t.id}">Hours (est. ${t.hours})</label><input id="h-${t.id}" class="num" type="number" min="0" step="0.5" value="${st.hours||0}" data-f="topic|${t.id}|hours"></div>
+      <div><label>Status</label>${statusSel('topic',t.id,st.status)}</div>
+      <div><label for="n-${t.id}">Notes</label><input id="n-${t.id}" class="txt" type="text" value="${esc(st.notes)}" placeholder="Add a note" data-f="topic|${t.id}|notes"></div>
+    </div>`}).join('');
+  });
+  return shown?out:empty('No topics match these filters','Clear the search or choose another phase or status to see the full list.');
+}
+function viewTopics(){
+  return `<section class="pagehead"><div><h1>Topics</h1><p>Set a status for every topic and log the hours you spend. Progress across the whole site updates as you go.</p></div></section>
+  <div class="toolbar">
+    <input type="search" placeholder="Search topics, details or resources" value="${esc(F.tq)}" data-filter="tq" aria-label="Search topics">
+    <select data-filter="tp" aria-label="Filter by phase"><option value="">All phases</option>${D.phases.map(p=>`<option${F.tp===p.name?' selected':''}>${esc(p.name)}</option>`).join('')}</select>
+    <select data-filter="ts" aria-label="Filter by status"><option value="">Any status</option>${STATUS3.map(v=>`<option value="${v}"${F.ts===v?' selected':''}>${label(v)}</option>`).join('')}</select>
+  </div>
+  <div id="tlist">${topicList()}</div>`;
+}
+
+function viewWeekly(){
+  const wi=weekInfo();
+  const rows=D.weeks.map((w,i)=>{const n=i+1,r=weekRange(n),st=W(n);return `
+  <div class="row wrow ${wi.wk===n?'now':''}" data-row data-status="${st.status}">
+    <div><div class="wk">${n}</div></div>
+    <div>${fmt(r[0])}<div class="td">to ${fmt(r[1])}${wi.wk===n?' · this week':''}</div></div>
+    <div><div class="tt">${esc(w.phase)}</div><div class="td">${esc(w.focus)}</div></div>
+    <div class="td" style="margin:0">${esc(w.deliverable)}</div>
+    <div><label>Planned</label><b>${S.weekly} h</b></div>
+    <div><label for="wa-${n}">Actual</label><input id="wa-${n}" class="num" style="width:70px" type="number" min="0" step="0.5" value="${st.actual||0}" data-f="week|${n}|actual"></div>
+    <div><label>Status</label>${statusSel('week',n,st.status)}</div>
+  </div>`}).join('');
+  return `<section class="pagehead"><div><h1>Weekly plan</h1><p>Choose your start date and weekly hours; every date below recalculates. The current week is marked in red.</p></div></section>
+  <div class="panel wsettings">
+    <div><label for="st">Plan start date</label><input id="st" class="dt" type="date" value="${esc(S.start)}" data-f="set|start|start"></div>
+    <div><label for="wh">Study hours per week</label><input id="wh" class="num" type="number" min="1" max="80" step="1" value="${S.weekly}" data-f="set|weekly|weekly"></div>
+    <div class="td" style="color:var(--ink2);font-size:13.5px">Target job-ready date: <b style="color:var(--ink)">${fmt(addDays(parseDate(S.start),167))}</b></div>
+  </div>
+  <div><div class="whead"><span>Week</span><span>Dates</span><span>Focus</span><span>Checkpoint</span><span>Planned</span><span>Actual</span><span>Status</span></div>${rows}
+  <div class="wtot" id="wtot">${weekTotals()}</div></div>`;
+}
+function weekTotals(){
+  const a=D.weeks.reduce((s,_,i)=>s+(Number(W(i+1).actual)||0),0);
+  const done=D.weeks.filter((_,i)=>W(i+1).status==='Completed').length;
+  return `<span>Planned: ${S.weekly*24} h</span><span>Logged: ${hrs(a)} h</span><span>Weeks completed: ${done} / 24</span>`;
+}
+
+function practiceList(){
+  let out='',shown=0;
+  D.phases.forEach(p=>{
+    if(F.pp&&F.pp!==p.name)return;
+    const rows=D.exercises.filter(e=>e.phase===p.name&&(!F.ps||P(e.id).status===F.ps));
+    if(!rows.length)return;shown+=rows.length;
+    const done=D.exercises.filter(e=>e.phase===p.name&&P(e.id).status==='Completed').length,tot=D.exercises.filter(e=>e.phase===p.name).length;
+    out+=`<div class="ghead"><i class="sw" style="background:${phaseColor(p.name)}"></i><h3>${esc(p.name)}</h3><div class="gstat"><span>${done}/${tot} done</span></div></div>`+rows.map(e=>{const st=P(e.id);return `
+    <div class="row prow" data-row data-status="${st.status}">
+      <div><div class="tt">${esc(e.title)}<span class="pri ${e.diff==='Hard'?'High':e.diff==='Medium'?'Medium':'Low'}">${e.diff}</span></div><div class="td">${esc(e.desc)}</div></div>
+      <div><label>Status</label>${statusSel('practice',e.id,st.status)}</div>
+      <div><label for="d-${e.id}">Date done</label><input id="d-${e.id}" class="dt" type="date" value="${esc(st.date)}" data-f="practice|${e.id}|date"></div>
+      <div><label for="pn-${e.id}">Notes or repo link</label><input id="pn-${e.id}" class="txt" type="text" value="${esc(st.notes)}" placeholder="Add a note" data-f="practice|${e.id}|notes"></div>
+    </div>`}).join('');
+  });
+  return shown?out:empty('No exercises match these filters','Choose another phase or status to see more.');
+}
+function viewPractice(){
+  return `<section class="pagehead"><div><h1>Practice exercises</h1><p>Hands-on work is what gets you hired. Do each exercise on a real z/OS system, then add the date and a link to your code.</p></div></section>
+  <div class="toolbar">
+    <select data-filter="pp" aria-label="Filter by phase"><option value="">All phases</option>${D.phases.map(p=>`<option${F.pp===p.name?' selected':''}>${esc(p.name)}</option>`).join('')}</select>
+    <select data-filter="ps" aria-label="Filter by status"><option value="">Any status</option>${STATUS3.map(v=>`<option value="${v}"${F.ps===v?' selected':''}>${label(v)}</option>`).join('')}</select>
+  </div><div id="plist">${practiceList()}</div>`;
+}
+
+const IV_STATUS=['Not Started','Learning','Ready'];
+function interviewList(){
+  const q=F.iq.trim().toLowerCase();
+  const rows=D.interview.filter(x=>(!F.ic||x.cat===F.ic)&&(!F.is||Q(x.id).status===F.is)&&(!q||(x.q+' '+x.a).toLowerCase().includes(q)));
+  if(!rows.length)return empty('No questions match these filters','Clear the search or pick another category.');
+  return rows.map(x=>{const st=Q(x.id);return `
+  <details class="q" data-row data-id="${x.id}"><summary><span class="dot" data-s="${st.status}"></span><span class="qt">${esc(x.q)}</span><span class="cat">${esc(x.cat)}</span></summary>
+    <div class="qbody"><p>${esc(x.a)}</p>
+      <div class="qctl"><div><label>Status</label>${statusSel('interview',x.id,st.status,IV_STATUS)}</div>
+      <div><label for="c-${x.id}">Confidence</label><select id="c-${x.id}" data-f="interview|${x.id}|conf"><option value="">Not rated</option>${[1,2,3,4,5].map(n=>`<option value="${n}"${String(st.conf)===String(n)?' selected':''}>${n} of 5</option>`).join('')}</select></div></div>
+    </div></details>`}).join('');
+}
+function viewInterview(){
+  const cats=[...new Set(D.interview.map(q=>q.cat))];
+  return `<section class="pagehead"><div><h1>Interview prep</h1><p>${D.interview.length} questions with short model answers. Try answering aloud before you open one, then rate how ready you feel.</p></div><button class="btn" type="button" data-click="random">Pick a random question</button></section>
+  <div class="toolbar"><input type="search" placeholder="Search questions" value="${esc(F.iq)}" data-filter="iq" aria-label="Search questions">
+    <select data-filter="is" aria-label="Filter by status"><option value="">Any status</option>${IV_STATUS.map(v=>`<option value="${v}"${F.is===v?' selected':''}>${label(v)}</option>`).join('')}</select></div>
+  <div class="chips" id="chips">${['',...cats].map(c=>`<button type="button" class="chip" aria-pressed="${F.ic===c}" data-click="cat" data-id="${esc(c)}">${c||'All'}<small>${c?D.interview.filter(q=>q.cat===c).length:D.interview.length}</small></button>`).join('')}</div>
+  <div id="qlist">${interviewList()}</div>`;
+}
+
+const JOB_STATUS=['Planned','Applied','Interview','Offer','Rejected','Withdrawn'];
+function jobList(){
+  if(!S.jobs.length)return empty('No applications yet','Add the first company above. Track every application here so follow-ups never slip.');
+  return S.jobs.map((j,i)=>`
+  <div class="row jrow" data-row data-status="${j.status}">
+    <div><div class="tt">${esc(j.company)}</div><div class="td">${esc(j.role)}${j.source?' · '+esc(j.source):''}</div></div>
+    <div><label for="jn-${i}">Notes</label><input id="jn-${i}" class="txt" type="text" value="${esc(j.notes)}" data-f="job|${i}|notes"></div>
+    <div><label>Status</label>${statusSel('job',i,j.status,JOB_STATUS)}</div>
+    <div class="sm"><label>Applied</label>${j.applied?fmt(parseDate(j.applied)):'Not yet'}</div>
+    <div class="sm"><label>Follow up</label>${j.follow?fmt(parseDate(j.follow)):'None set'}</div>
+    <div><label>&nbsp;</label><button class="del" type="button" data-click="delJob" data-id="${i}" aria-label="Delete ${esc(j.company)}">Delete</button></div>
+  </div>`).join('');
+}
+function viewJobs(){
+  const jc=k=>S.jobs.filter(j=>j.status===k).length;
+  return `<section class="pagehead"><div><h1>Job tracker</h1><p>Entry-level mainframe roles often start in production support or development at IT services firms, banks and insurers. Keep every application in one place.</p></div></section>
+  <div class="panel"><h2>Add an application</h2>
+    <div class="addform">
+      <div class="span2"><label for="j-company">Company</label><input id="j-company" class="field" type="text" placeholder="Company name"></div>
+      <div class="span2"><label for="j-role">Role</label><input id="j-role" class="field" type="text" placeholder="Mainframe developer"></div>
+      <div><label for="j-source">Source</label><input id="j-source" class="field" type="text" placeholder="LinkedIn"></div>
+      <div><label for="j-status">Status</label><select id="j-status" class="field">${JOB_STATUS.map(v=>`<option${v==='Applied'?' selected':''}>${v}</option>`).join('')}</select></div>
+      <div><label for="j-applied">Date applied</label><input id="j-applied" class="field" type="date"></div>
+      <div><label for="j-follow">Follow up on</label><input id="j-follow" class="field" type="date"></div>
+      <div class="span2"><label for="j-notes">Notes</label><input id="j-notes" class="field" type="text" placeholder="Contact, referral, next step"></div>
+      <div><button class="btn" type="button" data-click="addJob">Add application</button></div>
+    </div></div>
+  <div class="funnel" style="background:var(--sheet);grid-template-columns:repeat(6,1fr)">${JOB_STATUS.map(k=>`<div><b>${jc(k)}</b><span>${k}</span></div>`).join('')}</div>
+  <div id="jlist">${jobList()}</div>`;
+}
+
+function viewResources(){
+  return `<section class="pagehead"><div><h1>Resources</h1><p>Where to learn each phase. Free programs can change, so confirm availability on the provider's site.</p></div></section>
+  <div>${D.resources.map(r=>{const st=R(r.id);return `
+  <div class="row rrow" data-row data-status="${st.status}">
+    <div><div class="tt">${esc(r.name)}</div><div class="td">${esc(r.notes)}</div></div>
+    <div class="td" style="margin:0">${esc(r.type)}<br>${esc(r.covers)}<br><span class="cost ${r.cost}">${r.cost}</span></div>
+    <div><label>My status</label>${statusSel('resource',r.id,st.status)}</div>
+  </div>`}).join('')}</div>`;
+}
+
+const VIEWS={dashboard:viewDashboard,phases:viewPhases,topics:viewTopics,weekly:viewWeekly,practice:viewPractice,interview:viewInterview,jobs:viewJobs,resources:viewResources};
+let heroPlayed=false;
+
+/* ---------- shell ---------- */
+function paintTabs(){
+  $('#tablist').innerHTML=TABS.map(([k,l])=>`<button class="tab" type="button" data-click="go" data-id="${k}"${k===tab?' aria-current="page"':''}>${l}</button>`).join('');
+}
+function paintHeader(){
+  const o=overall();$('#hpct').textContent=pctTxt(o.pct);$('#hfill').style.width=o.pct*100+'%';
+}
+function paintFoot(){
+  $('#foot').textContent=persistOK?'Progress is saved automatically in this browser. Use Export progress to keep a backup file or move to another device.':'This view cannot save progress. Open the file directly in your browser, or use Export progress to keep a backup.';
+}
+function render(){
+  paintTabs();
+  $('#view').innerHTML=VIEWS[tab]();
+  if(tab==='dashboard')heroPlayed=true;
+  paintHeader();
+}
+function go(t,scroll){
+  tab=VIEWS[t]?t:'dashboard';
+  try{history.replaceState(null,'','#'+tab)}catch(e){}
+  render();
+  if(scroll!==false)window.scrollTo(0,0);
+}
+let toastT;
+function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('on'),2600)}
+
+/* ---------- events ---------- */
+function setField(scope,id,key,v){
+  if(scope==='topic')T(id)[key]=v;
+  else if(scope==='week')W(id)[key]=v;
+  else if(scope==='practice')P(id)[key]=v;
+  else if(scope==='interview')Q(id)[key]=v;
+  else if(scope==='resource')R(id)[key]=v;
+  else if(scope==='job'){if(S.jobs[id])S.jobs[id][key]=v}
+  else if(scope==='set'){S[key]=v}
+}
+function refreshDerived(scope,id){
+  paintHeader();
+  if(tab==='topics'){
+    document.querySelectorAll('.ghead[data-phase]').forEach(h=>{const p=D.phases.find(x=>x.name===h.dataset.phase);if(p)$('.gstat',h).innerHTML=gstat(phaseStats(p))});
+  }
+  if(tab==='weekly'){const t=$('#wtot');if(t)t.innerHTML=weekTotals()}
+  if(tab==='interview'&&scope==='interview'){const d=document.querySelector(`details[data-id="${id}"] .dot`);if(d)d.dataset.s=Q(id).status}
+}
+function onField(e){
+  const el=e.target.closest('[data-f]');if(!el)return;
+  const [scope,id,key]=el.dataset.f.split('|');
+  const isChange=e.type==='change';
+  if(scope==='set'){
+    if(key==='name'){S.name=el.value.toUpperCase();storeSave();return}
+    if(!isChange)return;
+    if(key==='weekly')S.weekly=clamp(parseInt(el.value)||12,1,80);
+    else if(key==='start'&&el.value)S.start=el.value;
+    storeSave();render();return;
+  }
+  let v=el.value;
+  if(el.type==='number')v=Math.max(0,parseFloat(v)||0);
+  if(el.tagName==='SELECT'&&!isChange)return;
+  setField(scope,id,key,v);
+  if(key==='status'){el.dataset.s=v;const row=el.closest('[data-row]');if(row)row.dataset.status=v}
+  storeSave();refreshDerived(scope,id);
+}
+document.addEventListener('input',e=>{
+  const f=e.target.closest('[data-filter]');
+  if(f){F[f.dataset.filter]=f.value;filterRender();return}
+  onField(e);
+});
+document.addEventListener('change',e=>{
+  const f=e.target.closest('[data-filter]');
+  if(f){F[f.dataset.filter]=f.value;filterRender();return}
+  if(e.target.id==='importFile'){doImport(e.target);return}
+  onField(e);
+});
+function filterRender(){
+  if(tab==='topics')$('#tlist').innerHTML=topicList();
+  else if(tab==='practice')$('#plist').innerHTML=practiceList();
+  else if(tab==='interview'){$('#qlist').innerHTML=interviewList()}
+}
+let resetT=null;
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-click]');if(!b)return;
+  const a=b.dataset.click,id=b.dataset.id;
+  if(a==='go')go(id);
+  else if(a==='goPhase'){F.tp=id;F.ts='';F.tq='';go('topics')}
+  else if(a==='cat'){F.ic=id;$('#chips').querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.id===id)));filterRender()}
+  else if(a==='random'){
+    const items=[...document.querySelectorAll('#qlist details')];if(!items.length)return;
+    const pool=items.filter(d=>Q(d.dataset.id).status!=='Ready');const list=pool.length?pool:items;
+    items.forEach(d=>d.open=false);const pick=list[Math.floor(Math.random()*list.length)];pick.open=true;pick.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+  else if(a==='addJob'){
+    const g=k=>$('#j-'+k).value.trim();
+    if(!g('company')){toast('Enter a company name to add the application');$('#j-company').focus();return}
+    S.jobs.unshift({company:g('company'),role:g('role')||'Mainframe developer',source:g('source'),status:$('#j-status').value,applied:$('#j-applied').value,follow:$('#j-follow').value,notes:g('notes')});
+    storeSave();render();toast('Application added');
+  }
+  else if(a==='delJob'){S.jobs.splice(parseInt(id),1);storeSave();render();toast('Application deleted')}
+  else if(a==='export'){
+    const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});const l=document.createElement('a');
+    l.href=URL.createObjectURL(blob);l.download='mainframe-roadmap-progress.json';document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(l.href),1500);toast('Progress exported');
+  }
+  else if(a==='import')$('#importFile').click();
+  else if(a==='reset'){
+    if(resetT){clearTimeout(resetT);resetT=null;S=defaults();storeSave();b.textContent='Reset';b.classList.remove('warn');heroPlayed=false;render();toast('Progress reset');}
+    else{b.textContent='Click again to erase all progress';b.classList.add('warn');resetT=setTimeout(()=>{resetT=null;b.textContent='Reset';b.classList.remove('warn')},4000)}
+  }
+});
+function doImport(input){
+  const f=input.files&&input.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{const o=JSON.parse(r.result);if(typeof o!=='object'||!o||Array.isArray(o))throw 0;S=Object.assign(defaults(),o);storeSave();render();toast('Progress imported')}catch(err){toast('That file is not a valid progress export')}input.value=''};
+  r.readAsText(f);
+}
+window.addEventListener('hashchange',()=>{const t=location.hash.slice(1);if(VIEWS[t]&&t!==tab)go(t)});
+
+/* ---------- start ---------- */
+(function init(){
+  const h=(location.hash||'').slice(1);if(VIEWS[h])tab=h;
+  paintFoot();render();
+})();
+</script>
+</body>
+</html>
